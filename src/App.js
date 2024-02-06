@@ -14,27 +14,26 @@ import FeaturesPage2 from './Pages/Feature_2'
 import FeaturesPage3 from './Pages/Feacture_3'
 import Explore from './Pages/Explore';
 
-
 function App() {
   return (
     <div className="App">
-       <Router>
-            <Header />
-            <Routes>
-                <Route path="/" exact component={Home} />
-                <Route path="/men" component={Men} />
-                <Route path="/women" component={Women} />
-                <Route path="/kids" component={Kids} />
-                <Route path="/about" component={About} />
-                <Route path="/products" component={Products} />
-                <Route path="/single-product" component={SingleProduct} />
-                <Route path="/contact" component={Contact} />
-                <Route path="/features/page-1" component={FeaturesPage1} />
-                <Route path="/features/page-2" component={FeaturesPage2} />
-                <Route path="/features/page-3" component={FeaturesPage3} />
-                <Route path="/explore" component={Explore} />
-            </Routes>
-        </Router>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/men" element={<Men />} />
+          <Route path="/women" element={<Women />} />
+          <Route path="/kids" element={<Kids />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/single-product" element={<SingleProduct />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/features/page-1" element={<FeaturesPage1 />} />
+          <Route path="/features/page-2" element={<FeaturesPage2 />} />
+          <Route path="/features/page-3" element={<FeaturesPage3 />} />
+          <Route path="/explore" element={<Explore />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

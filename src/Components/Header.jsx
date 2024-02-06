@@ -1,7 +1,8 @@
 // Import necessary modules
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import logo from '../assets/images/logo.png'
+import '../Components/header.css'
 
 
 // Create Header component
@@ -11,40 +12,72 @@ const Header = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <nav className="main-nav">
+                        <nav className="main-nav d-flex justify-content-between align-items-center">
                             {/* Logo */}
                             <Link to="/" className="logo">
                                 <img src={logo} alt="Logo" />
                             </Link>
 
                             {/* Menu */}
-                            <ul className="nav">
-                                <li><Link to="/" className="scroll-to-section" activeClassName="active">Home</Link></li>
-                                <li><Link to="/men" className="scroll-to-section">Men's</Link></li>
-                                <li><Link to="/women" className="scroll-to-section">Women's</Link></li>
-                                <li><Link to="/kids" className="scroll-to-section">Kid's</Link></li>
+                            <ul className="nav ">
+                                <li><Link to="/" className="scroll-to-section p-2" activeClassName="active">Home</Link></li>
+                                <li><Link to="/men" className="scroll-to-section p-2">Men's</Link></li>
+                                <li><Link to="/women" className="scroll-to-section p-2">Women's</Link></li>
+                                <li><Link to="/kids" className="scroll-to-section p-2">Kid's</Link></li>
                                 
                                 {/* Pages */}
-                                <li className="submenu">
-                                    <Link to="#" className="dropdown-toggle">Pages</Link>
-                                    <ul>
-                                        <li><Link to="/about">About Us</Link></li>
-                                        <li><Link to="/products">Products</Link></li>
-                                        <li><Link to="/single-product">Single Product</Link></li>
-                                        <li><Link to="/contact">Contact Us</Link></li>
-                                    </ul>
-                                </li>
+                                <li className="nav-item dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   Pages
+                                </button>
+                    <div
+                      className="dropdown-menu"
+                      aria-labelledby="navbarDropdown"
+                    >
+                      <Link to="/about" className="dropdown-item">
+                        About Us
+                      </Link>
+                      <Link to="/products" className="dropdown-item">
+                        Products
+                      </Link>
+                      <Link to="/single-product" className="dropdown-item">
+                        Single Product
+                      </Link>
+                      <Link to="/contact" className="dropdown-item">
+                        Contact Us
+                      </Link>
+                    </div>
+                  </li>
 
-                                {/* Features */}
-                                <li className="submenu">
-                                    <Link to="#" className="dropdown-toggle">Features</Link>
-                                    <ul>
-                                        <li><Link to="/features/page-1">Features Page 1</Link></li>
-                                        <li><Link to="/features/page-2">Features Page 2</Link></li>
-                                        <li><Link to="/features/page-3">Features Page 3</Link></li>
-                                        <li><a rel="nofollow" href="https://templatemo.com/page/4" target="_blank">Template Page 4</a></li>
-                                    </ul>
-                                </li>
+                               
+
+                  <li className="nav-item dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Features
+                    </button>
+                    <div
+                      className="dropdown-menu"
+                      aria-labelledby="navbarDropdownFeatures"
+                    >
+                      <Link to="/features/page-1" className="dropdown-item">
+                        Features Page 1
+                      </Link>
+                      <Link to="/features/page-2" className="dropdown-item">
+                        Features Page 2
+                      </Link>
+                      <Link to="/features/page-3" className="dropdown-item">
+                        Features Page 3
+                      </Link>
+                      <a
+                        href="https://templatemo.com/page/4"
+                        className="dropdown-item"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Template Page 4
+                      </a>
+                    </div>
+                  </li>
 
                                 {/* Explore */}
                                 <li><Link to="/explore" className="scroll-to-section">Explore</Link></li>
