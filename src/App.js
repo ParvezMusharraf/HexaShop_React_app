@@ -13,6 +13,7 @@ import FeaturesPage1 from './Pages/Feature_1'
 import FeaturesPage2 from './Pages/Feature_2'
 import FeaturesPage3 from './Pages/Feacture_3'
 import Explore from './Pages/Explore';
+import Footer from './Components/Footer/Footer';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/explore" element={<Explore />} />
         </Routes>
       </Router>
+      <Footer/>
     </div>
   );
 }
