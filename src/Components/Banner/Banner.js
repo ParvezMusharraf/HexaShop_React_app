@@ -1,12 +1,35 @@
 import React from 'react';
 import leftBannerImage from '../../assets/images/left-banner-image.jpg';
 import RightBannerImage from '../../assets/images/baner-right-image-01.jpg';
-import RightBannerImage2 from '../../assets/images/baner-right-image-02.jpg';
-import RightBannerImage3 from '../../assets/images/baner-right-image-03.jpg';
-import RightBannerImage4 from '../../assets/images/baner-right-image-04.jpg';
+import { useEffect } from 'react';
+import {getCatagoriesList} from '../../Request/Requiests';
+import { useState } from 'react';
 // import '../Banner/Banner.css';
 
 const Banner = () => {
+
+    const [catagoriesList,setCatagoriesList]= useState();
+
+    useEffect(()=>{
+        getCatagoriesList().then((res)=>{
+
+            const shuffleArray = (array) => {
+                let shuffledArray = array.slice();
+                for (let i = shuffledArray.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+                }
+                return shuffledArray;
+            };
+            // 
+            
+            setCatagoriesList(shuffleArray(res)?.slice(0, 4));
+            console.log(res)
+        }
+        )
+    },[])
+
+
   return (
     <div className="main-banner" id="top">
       <div className="container-fluid">
@@ -16,7 +39,7 @@ const Banner = () => {
               <div className="thumb">
                 <div className="inner-content">
                   <h4>We Are Hexashop</h4>
-                  <span>Awesome, clean & creative HTML5 Template</span>
+                  <span>Awesome, clean & Atractive </span>
                   <div className="main-border-button">
                     <a href="#">Purchase Now!</a>
                   </div>
@@ -25,90 +48,33 @@ const Banner = () => {
               </div>
             </div>
           </div>
+
           <div className="col-lg-6">
             {/* Right content code here */}
                 <div class="right-content">
                     <div class="row">
-                        <div class="col-lg-6">
-                            <div class="right-first-image">
-                                <div class="thumb">
-                                    <div class="inner-content">
-                                        <h4>Women</h4>
-                                        <span>Best Clothes For Women</span>
+                        {catagoriesList?.map((cat,i)=>{  return <div key={i} class="col-lg-6">
+                            <div className="right-first-image">
+                                <div className="thumb">
+                                    <div className="inner-content">
+                                        <h4>{cat.name}</h4>
+                                        <span>We Provide Best{cat.name}</span>
                                     </div>
-                                    <div class="hover-content">
-                                        <div class="inner">
-                                            <h4>Women</h4>
+                                    <div className="hover-content">
+                                        <div className="inner">
+                                            <h4>{cat.CatName}</h4>
                                             <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
-                                            <div class="main-border-button">
+                                            <div className="main-border-button">
                                                 <a href="#">Discover More</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <img src={RightBannerImage}/>
+                                    <img src={cat.image ? cat.image : RightBannerImage } alt={cat.name}/>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="right-first-image">
-                                <div class="thumb">
-                                    <div class="inner-content">
-                                        <h4>Men</h4>
-                                        <span>Best Clothes For Men</span>
-                                    </div>
-                                    <div class="hover-content">
-                                        <div class="inner">
-                                            <h4>Men</h4>
-                                            <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
-                                            <div class="main-border-button">
-                                                <a href="#">Discover More</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <img src={RightBannerImage2}/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="right-first-image">
-                                <div class="thumb">
-                                    <div class="inner-content">
-                                        <h4>Kids</h4>
-                                        <span>Best Clothes For Kids</span>
-                                    </div>
-                                    <div class="hover-content">
-                                        <div class="inner">
-                                            <h4>Kids</h4>
-                                            <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
-                                            <div class="main-border-button">
-                                                <a href="#">Discover More</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <img src={RightBannerImage3}/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="right-first-image">
-                                <div class="thumb">
-                                    <div class="inner-content">
-                                        <h4>Accessories</h4>
-                                        <span>Best Trend Accessories</span>
-                                    </div>
-                                    <div class="hover-content">
-                                        <div class="inner">
-                                            <h4>Accessories</h4>
-                                            <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
-                                            <div class="main-border-button">
-                                                <a href="#">Discover More</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <img src={RightBannerImage4}/>
-                                </div>
-                            </div>
-                        </div>
+                        })
+                        }
                     </div>
                 </div>
           </div>
