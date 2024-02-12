@@ -14,6 +14,7 @@ import FeaturesPage2 from './Pages/Feature_2'
 import FeaturesPage3 from './Pages/Feacture_3'
 import Explore from './Pages/Explore';
 import Footer from './Components/Footer/Footer';
+import ProductSection from './Components/ProductSection/ProductSection'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/productsSection" element={<ProductSection/>}/>
           <Route path="/men" element={<Men />} />
           <Route path="/women" element={<Women />} />
           <Route path="/kids" element={<Kids />} />

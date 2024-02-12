@@ -4,6 +4,7 @@ import RightBannerImage from '../../assets/images/baner-right-image-01.jpg';
 import { useEffect } from 'react';
 import {getCatagoriesList} from '../../Request/Requiests';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 // import '../Banner/Banner.css';
 
 const Banner = () => {
@@ -54,7 +55,7 @@ const Banner = () => {
                 <div class="right-content">
                     <div class="row">
                         {catagoriesList?.map((cat,i)=>{  return <div key={i} class="col-lg-6">
-                            <div className="right-first-image">
+                            <div className="right-first-image ">
                                 <div className="thumb">
                                     <div className="inner-content">
                                         <h4>{cat.name}</h4>
@@ -65,7 +66,8 @@ const Banner = () => {
                                             <h4>{cat.CatName}</h4>
                                             <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
                                             <div className="main-border-button">
-                                                <a href="#">Discover More</a>
+                                                {/* <a href="#">Discover More</a> */}
+                                                <Link to="/productsSection" >More Products</Link>
                                             </div>
                                         </div>
                                     </div>

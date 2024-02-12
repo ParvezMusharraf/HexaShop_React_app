@@ -19,4 +19,21 @@ export const getCatagoriesList = async () => {
   }
 };
 
+// Get Product by Catagories
+
+export const getProductByCatagories = async (id)=>{
+    try{
+        const res = await axios.get(`${MAIN_URL}/categories/${id}/products`,{
+            headers:{
+                // Authorization:"Bearer " + token,
+            }
+        });
+        return res
+    }
+    catch(error){
+        console.log(error);
+        throw error;
+    }
+}
+
 
