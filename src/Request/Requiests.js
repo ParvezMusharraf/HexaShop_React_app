@@ -23,7 +23,7 @@ export const getCatagoriesList = async () => {
 
 export const getProductByCatagories = async (id)=>{
     try{
-        const res = await axios.get(`${MAIN_URL}/categories/${id}/products`,{
+        const res = await axios.get(`${MAIN_URL}/products/?categoryId=${id}`,{
             headers:{
                 // Authorization:"Bearer " + token,
             }

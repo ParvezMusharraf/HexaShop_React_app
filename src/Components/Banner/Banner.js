@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import {getCatagoriesList} from '../../Request/Requiests';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // import '../Banner/Banner.css';
 
 const Banner = () => {
@@ -14,21 +15,30 @@ const Banner = () => {
     useEffect(()=>{
         getCatagoriesList().then((res)=>{
 
-            const shuffleArray = (array) => {
-                let shuffledArray = array.slice();
-                for (let i = shuffledArray.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
-                }
-                return shuffledArray;
-            };
+            // const shuffleArray = (array) => {
+            //     let shuffledArray = array.slice();
+            //     for (let i = shuffledArray.length - 1; i > 0; i--) {
+            //         const j = Math.floor(Math.random() * (i + 1));
+            //         [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+            //     }
+            //     return shuffledArray;
+            // };
             // 
             
-            setCatagoriesList(shuffleArray(res)?.slice(0, 4));
+            // setCatagoriesList(shuffleArray(res)?.slice(0, 4));
+            setCatagoriesList(res.slice(0,4));
             console.log(res)
         }
         )
     },[])
+    
+    let navigate = new useNavigate()
+
+
+    const handleNavigate = (categoryId) => {
+      let url = `/productsSection?categoryId=${categoryId}`;
+      navigate(url);
+    };
 
 
   return (
@@ -66,8 +76,7 @@ const Banner = () => {
                                             <h4>{cat.CatName}</h4>
                                             <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
                                             <div className="main-border-button">
-                                                {/* <a href="#">Discover More</a> */}
-                                                <Link to="/productsSection" >More Products</Link>
+                                                <button className='btn btn-outline-light' onClick={()=>handleNavigate(cat.id)}>More Products</button>
                                             </div>
                                         </div>
                                     </div>
