@@ -1,5 +1,7 @@
 import React from 'react'
 import {getProductByCatagories} from '../../Request/Requiests'
+import { FaProductHunt } from "react-icons/fa";
+import { CgDetailsMore } from "react-icons/cg";
 import { useEffect } from 'react';
 import { useState } from 'react';
 import {
@@ -33,7 +35,7 @@ const ProductSection = () => {
   }, []);
 
   return (
-    <div className='' style={{
+    <div className='row' style={{
       marginTop:"200px",
       display:'flex',
       flexDirection:"row",
@@ -43,43 +45,36 @@ const ProductSection = () => {
 
 
     { 
-    catagoryDetails?.map((p,index)=> <MDBContainer fluid className="my-5">
+    catagoryDetails?.map((p,index)=> <MDBContainer className="col-6 my-5">
     <MDBRow className="justify-content-center">
-      <MDBCol md="4">
+      <MDBCol md="7">
         <MDBCard className="text-black">
-          <MDBIcon fab icon="apple" size="lg" className="px-3 pt-3 pb-2" />
+          <MDBIcon fab icon="apple" size="lg" className="px-3 pb-2" />
 
           {/* images */}
           <MDBCardImage
             // src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/3.webp"
-            src={
-              JSON.parse(p.images[0]) && JSON.parse(p.images[0]) !== 'null'
-              ? JSON.parse(p.images[0])
-              : banner            }
+            src={p.category.image}
             position="top"
             alt={p.title}
           />
           <MDBCardBody>
             <div className="text-center">
-              <MDBCardTitle>Believing is seeing</MDBCardTitle>
+              <MDBCardTitle>{p.title}</MDBCardTitle>
               {/* title */}
               <p className="text-muted mb-4">{p.title}</p> 
             </div>
             <div>
               <div className="d-flex justify-content-between">
               {/* description */}
-                <span>{p.description}</span>
-                <span>$5,999</span>
+              <p>{p.description}</p>
+                <CgDetailsMore />          
               </div>
               <div className="d-flex justify-content-between">
               {/* category */}
                 <span>{p.category.name}</span>
-                <span>$999</span>
+                <FaProductHunt />
               </div>
-              {/* <div className="d-flex justify-content-between">
-                <span>Vesa Mount Adapter</span>
-                <span>$199</span>
-              </div> */}
             </div>
             <div className="d-flex justify-content-between total font-weight-bold mt-4">
               <span>Total</span>

@@ -52,7 +52,7 @@ const Banner = () => {
                   <h4>We Are Hexashop</h4>
                   <span>Awesome, clean & Atractive </span>
                   <div className="main-border-button">
-                    <a href="#">Purchase Now!</a>
+                    <Link to="/products">Purchase Now!</Link>
                   </div>
                 </div>
                 <img src={leftBannerImage} alt="Hexashop Left Banner" />

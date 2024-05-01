@@ -1,4 +1,5 @@
 import axios from "axios";
+import MAIN_LocalURL from "./ApiConfig";
 import MAIN_URL from "./ApiConfig";
 
 
@@ -36,4 +37,20 @@ export const getProductByCatagories = async (id)=>{
     }
 }
 
+// get All ProductsList
+
+
+export const getAllProductsList = async()=>{
+    try {
+        const res = await axios.get(`${MAIN_LocalURL}/Allproducts`,{
+            headers:{
+                // Authorization:"Bearer " + token,
+            }
+        })
+        return res
+    }
+    catch(error){
+        console.log(error)
+    }
+}
 
