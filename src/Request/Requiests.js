@@ -8,7 +8,7 @@ import MAIN_URL from "./ApiConfig";
 export const getCatagoriesList = async () => {
 
   try {
-      const res = await axios.get(`${MAIN_URL}/categories/`, {
+      const res = await axios.get(`${MAIN_LocalURL}/getAllCatagoryList`, {
           headers: {
               //   Authorization: "Bearer " + token,
           },

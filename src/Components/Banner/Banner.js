@@ -23,10 +23,9 @@ const Banner = () => {
             //     }
             //     return shuffledArray;
             // };
-            // 
-            
+            //             
             // setCatagoriesList(shuffleArray(res)?.slice(0, 4));
-            setCatagoriesList(res.slice(0,4));
+            setCatagoriesList(res);
             console.log(res)
         }
         )
@@ -68,12 +67,12 @@ const Banner = () => {
                             <div className="right-first-image ">
                                 <div className="thumb">
                                     <div className="inner-content">
-                                        <h4>{cat.name}</h4>
-                                        <span>We Provide Best{cat.name}</span>
+                                        <h4>{cat.categoryName}</h4>
+                                        <span>We Provide Best {cat.categoryName}</span>
                                     </div>
                                     <div className="hover-content">
                                         <div className="inner">
-                                            <h4>{cat.CatName}</h4>
+                                            <h4>{cat.categoryName}</h4>
                                             <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
                                             <div className="main-border-button">
                                                 <button className='btn btn-outline-light' onClick={()=>handleNavigate(cat.id)}>More Products</button>
