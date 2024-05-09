@@ -1660,7 +1660,7 @@ Products Page
 }
 
 #products .item .thumb:hover .hover-content {
-  bottom: 30px;
+  bottom: 40px;
   opacity: 1;
   visibility: visible;
 }

@@ -1,25 +1,21 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
 import { getAllProductsList } from '../Request/Requiests';
-import { FaProductHunt } from "react-icons/fa";
+import { FaArrowAltCircleUp } from "react-icons/fa";
+import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { Card } from "antd";
+import ProductDetailsModel from '../Comman/ProductDetailModel'
 
-import { CgDetailsMore } from "react-icons/cg";
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBIcon,
-} from "mdb-react-ui-kit";
+const { Meta } = Card;
+
 
 const Product = () => {
 
   const [productDetails,setProductDetails] = useState([]);
+  const [showDetails, setShowDetials] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [callid,setcallId]= useState("")
 
-  const banner="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/3.webp"
 
 useEffect(()=>{
   getAllProductsList().then((res)=>{
@@ -28,53 +24,74 @@ useEffect(()=>{
   })
 },[]);
 
-  return (
-    <div  style={{ display: 'flex', flexWrap: 'wrap',marginTop:"100px",flexDirection:"row",width:"100%" }}>
-          {productDetails?.map((p,index)=> <MDBContainer  className="col-6 my-5">
-    <MDBRow className="justify-content-around">
-      <MDBCol md="7">
-        <MDBCard className="text-black">
-          <MDBIcon fab icon="apple" size="lg" className="px-3 pb-2" />
+const handleModel = (obj)=>{
+  setOpen(true)
+  setcallId(obj)
+}
 
-          {/* images */}
-          <MDBCardImage
-            src={p.image}
-            position="top"
-            alt={p.title}
-          />
-          <MDBCardBody>
-            <div className="text-center">
-            <MDBCardTitle>{p.title}</MDBCardTitle>
-              {/* title */}
-              <p className="text-muted mb-4">{p.title}</p> 
+  return (
+    <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: "100%",
+    }}
+  >
+    <div
+      className="row"
+      style={{
+        marginTop: "200px",
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {productDetails.map((p, index) => (
+        <div className="col-3 m-2 ">
+          <Card
+            hoverable
+            style={{ width: 250 }}
+            cover={
+              <img
+                style={{
+                  height: "300px",
+                  width: "250px",
+                }}
+                alt={p.title}
+                src={p.image}
+              />
+            }
+            // onClick={()=>setOpen(true)}
+          >
+            <Meta
+              title={p.title}
+              description={showDetails ? p.description : ""}
+            />
+            <div className="d-flex justify-content-between align-items-center my-3">
+              <b>Details:</b>
+              <button type="button" class="btn " data-toggle="modal" onClick={()=>handleModel(p)}  data-target="#exampleModal"> <IoIosArrowDropdownCircle /></button>
             </div>
-            <div>
-              <div className="d-flex justify-content-between">
-              {/* description */}
-                <p>{p.description}</p>
-                <CgDetailsMore />          
-              </div>
-              <div className="d-flex justify-content-between">
-              {/* category */}
-                <h6>{p.category.name}</h6>
-                <FaProductHunt />
-              </div>
+            <div className="d-flex justify-content-between">
+              <div>Category:</div>
+              <b>{p.category}</b>
             </div>
             <div className="d-flex justify-content-between total font-weight-bold mt-4">
               <span>Total</span>
-              {/* price */}
               <span>${p.price}</span>
             </div>
-          </MDBCardBody>
-        </MDBCard>
-      </MDBCol>
-    </MDBRow>
-  </MDBContainer>
-    ) 
-  }
-
-  
-    </div>
+          </Card>
+        </div>
+      ))}
+    </div>{open &&
+    <ProductDetailsModel 
+    setOpen={setOpen}
+    obj={callid}
+    />
+    }
+  </div>
   )
 }
 

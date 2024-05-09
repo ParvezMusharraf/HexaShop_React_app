@@ -20,22 +20,34 @@ export const getCatagoriesList = async () => {
   }
 };
 
+
+export const getProductListByCategory = async (data) => {
+
+  try {
+      const res = await axios.get(`${MAIN_LocalURL}/AllproductsByCategory?category=${data}`);
+      return res.data;
+  } catch (error) {
+      console.log(error);
+      throw error;
+  }
+};
+
 // Get Product by Catagories
 
-export const getProductByCatagories = async (id)=>{
-    try{
-        const res = await axios.get(`${MAIN_URL}/products/?categoryId=${id}`,{
-            headers:{
-                // Authorization:"Bearer " + token,
-            }
-        });
-        return res
-    }
-    catch(error){
-        console.log(error);
-        throw error;
-    }
-}
+// export const getProductByCatagories = async (id)=>{
+//     try{
+//         const res = await axios.get(`${MAIN_URL}/products/?categoryId=${id}`,{
+//             headers:{
+//                 // Authorization:"Bearer " + token,
+//             }
+//         });
+//         return res
+//     }
+//     catch(error){
+//         console.log(error);
+//         throw error;
+//     }
+// }
 
 // get All ProductsList
 

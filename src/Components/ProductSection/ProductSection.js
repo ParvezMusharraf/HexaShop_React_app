@@ -1,95 +1,98 @@
-import React from 'react'
-import {getProductByCatagories} from '../../Request/Requiests'
-import { FaProductHunt } from "react-icons/fa";
-import { CgDetailsMore } from "react-icons/cg";
-import { useEffect } from 'react';
-import { useState } from 'react';
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBIcon,
-} from "mdb-react-ui-kit";
+import React from "react";
+import { getProductListByCategory } from "../../Request/Requiests";
+import { FaArrowAltCircleUp } from "react-icons/fa";
+import { FaArrowCircleDown } from "react-icons/fa";
+import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { useEffect } from "react";
+import { useState } from "react";
+import ProductDetailsModel from '../../Comman/ProductDetailModel'
 
+import { Card } from "antd";
 
+const { Meta } = Card;
 
 const ProductSection = () => {
   const searchParams = new URLSearchParams(window.location.search);
-  const userIdParam = searchParams.get("categoryId");
-  const [catagoryDetails,setCatagoryDetails]= useState()
+  const category = searchParams.get("category");
+  const [catagoryDetails, setCatagoryDetails] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [callid,setcallId]= useState("")
 
-  const banner = "https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/3.webp"
-  
 
   useEffect(() => {
-    let data = userIdParam
-
-    getProductByCatagories(data)?.then((res) => {
-      setCatagoryDetails(res.data);
-      console.log(res.data, "property Details");
+    getProductListByCategory(category).then((res) => {
+      setCatagoryDetails(res);
     });
   }, []);
 
+  const handleModel = (obj)=>{
+    setOpen(true)
+    setcallId(obj)
+  }
+
   return (
-    <div className='row' style={{
-      marginTop:"200px",
-      display:'flex',
-      flexDirection:"row",
-      flexWrap:"wrap"
-      
-    }}>
-
-
-    { 
-    catagoryDetails?.map((p,index)=> <MDBContainer className="col-6 my-5">
-    <MDBRow className="justify-content-center">
-      <MDBCol md="7">
-        <MDBCard className="text-black">
-          <MDBIcon fab icon="apple" size="lg" className="px-3 pb-2" />
-
-          {/* images */}
-          <MDBCardImage
-            // src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/3.webp"
-            src={p.category.image}
-            position="top"
-            alt={p.title}
-          />
-          <MDBCardBody>
-            <div className="text-center">
-              <MDBCardTitle>{p.title}</MDBCardTitle>
-              {/* title */}
-              <p className="text-muted mb-4">{p.title}</p> 
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+      }}
+    >
+      <div
+        className="row"
+        style={{
+          marginTop: "200px",
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {catagoryDetails.map((p, index) => (
+          <div className="col-3 m-2 ">
+            <Card
+              hoverable
+              style={{ width: 250 }}
+              cover={
+                <img
+                  style={{
+                    height: "300px",
+                    width: "250px",
+                  }}
+                  alt={p.title}
+                  src={p.image}
+                />
+              }
+            >
+<Meta
+              title={p.title}
+            />
+            <div className="d-flex justify-content-between align-items-center my-3">
+              <b>Details:</b>
+              <button type="button" class="btn " data-toggle="modal" onClick={()=>handleModel(p)}  data-target="#exampleModal"> <IoIosArrowDropdownCircle /></button>
             </div>
-            <div>
-              <div className="d-flex justify-content-between">
-              {/* description */}
-              <p>{p.description}</p>
-                <CgDetailsMore />          
-              </div>
-              <div className="d-flex justify-content-between">
-              {/* category */}
-                <span>{p.category.name}</span>
-                <FaProductHunt />
-              </div>
+            <div className="d-flex justify-content-between">
+              <div>Category:</div>
+              <b>{p.category}</b>
             </div>
             <div className="d-flex justify-content-between total font-weight-bold mt-4">
               <span>Total</span>
-              {/* price */}
               <span>${p.price}</span>
             </div>
-          </MDBCardBody>
-        </MDBCard>
-      </MDBCol>
-    </MDBRow>
-  </MDBContainer>
-    ) 
-  }
+            </Card>
+          </div>
+        ))}
+      </div>
+      {open &&
+    <ProductDetailsModel 
+    setOpen={setOpen}
+    obj={callid}
+    />
+    }
     </div>
-  )
-}
+  );
+};
 
-export default ProductSection
+export default ProductSection;

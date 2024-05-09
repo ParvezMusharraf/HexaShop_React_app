@@ -14,17 +14,6 @@ const Banner = () => {
 
     useEffect(()=>{
         getCatagoriesList().then((res)=>{
-
-            // const shuffleArray = (array) => {
-            //     let shuffledArray = array.slice();
-            //     for (let i = shuffledArray.length - 1; i > 0; i--) {
-            //         const j = Math.floor(Math.random() * (i + 1));
-            //         [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
-            //     }
-            //     return shuffledArray;
-            // };
-            //             
-            // setCatagoriesList(shuffleArray(res)?.slice(0, 4));
             setCatagoriesList(res);
             console.log(res)
         }
@@ -34,8 +23,8 @@ const Banner = () => {
     let navigate = new useNavigate()
 
 
-    const handleNavigate = (categoryId) => {
-      let url = `/productsSection?categoryId=${categoryId}`;
+    const handleNavigate = (categoryName) => {
+      let url = `/productsSection?category=${categoryName}`;
       navigate(url);
     };
 
@@ -60,34 +49,35 @@ const Banner = () => {
           </div>
 
           <div className="col-lg-6">
-            {/* Right content code here */}
-                <div class="right-content">
-                    <div class="row">
-                        {catagoriesList?.map((cat,i)=>{  return <div key={i} class="col-lg-6">
-                            <div className="right-first-image ">
-                                <div className="thumb">
-                                    <div className="inner-content">
-                                        <h4>{cat.categoryName}</h4>
-                                        <span>We Provide Best {cat.categoryName}</span>
-                                    </div>
-                                    <div className="hover-content">
-                                        <div className="inner">
-                                            <h4>{cat.categoryName}</h4>
-                                            <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
-                                            <div className="main-border-button">
-                                                <button className='btn btn-outline-light' onClick={()=>handleNavigate(cat.id)}>More Products</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <img src={cat.image ? cat.image : RightBannerImage } alt={cat.name}/>
+    {/* Right content code here */}
+    <div class="right-content">
+        <div class="row">
+            {catagoriesList?.map((cat,i)=>{  return <div key={i} class="col-lg-6">
+                <div className="right-first-image ">
+                    <div className="thumb">
+                        <div className="inner-content">
+                            <h4>{cat.categoryName}</h4>
+                            <span>We Provide Best {cat.categoryName}</span>
+                        </div>
+                        <div className="hover-content">
+                            <div className="inner">
+                                <h4>{cat.categoryName}</h4>
+                                <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                <div className="main-border-button">
+                                    <button className='btn btn-outline-light' onClick={()=>handleNavigate(cat.categoryName)}>More Products</button>
                                 </div>
                             </div>
                         </div>
-                        })
-                        }
+                        {/* Fixing image size by adding fixed width and height */}
+                        <img src={cat.image ? cat.image : RightBannerImage } alt={cat.name} style={{ width: '100%', height: '300px' }}/>
                     </div>
                 </div>
-          </div>
+            </div>
+            })
+            }
+        </div>
+    </div>
+</div>
         </div>
       </div>
     </div>
