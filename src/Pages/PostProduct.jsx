@@ -1,7 +1,13 @@
 import React from "react";
 import { useState } from "react";
+import {SaveProduct} from '../Request/Requiests'
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const SingleProduct = () => {
+
+const PostProduct = () => {
+  const [counter,setCounter]=useState()
+  const [ratingCounter,setRatingCounter]=useState()
   const [formData, setFormData] = useState({
     title: "",
     price: 0,
@@ -13,21 +19,46 @@ const SingleProduct = () => {
       count: 0,
     },
   });
+  const CountChange = (e)=>{
+    const count  = e.target.value
+    setCounter(count)
+  }
+  const ChangeRating = (e)=>{
+    const Rating  = e.target.value
+    setRatingCounter(Rating)
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
+      rating: {
+        rate: ratingCounter,
+        count: counter,
+      },
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission, e.g., send data to server
+    SaveProduct(formData).then((res)=>{
+      if(res="Title, price, and category are required"){
+        const notify = () => toast.warn("Somthing Went Wrong");
+        notify()
+      }else{
+        const notify = () => toast.success("Product Posted Successfully");
+        notify()
+    }
+    }).catch((err)=>{
+      console.log(err)
+       })
     console.log(formData);
   };
   return (
+    <>
+    <ToastContainer
+    position="top-center"/>
     <section
       className="container w-50"
       style={{
@@ -57,16 +88,22 @@ const SingleProduct = () => {
           />
         </div>
         <div className="col-md-6">
-          <label htmlFor="category" className="form-label">Category</label>
-          <input
-            type="text"
-            className="form-control"
-            id="category"
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-          />
-        </div>
+  <label htmlFor="category" className="form-label">Category</label>
+  <select
+    className="form-control"
+    id="category"
+    name="category"
+    value={formData.category}
+    onChange={handleChange}
+  >
+    <option value="">Select a category</option>
+    <option value="men's clothing">men's clothing</option>
+    <option value="women's clothing">women's clothing</option>
+    <option value="kid's clothing">kid's clothing</option>
+    <option value="jewelery">jewelery</option>
+    <option value="electronics">electronics</option>
+  </select>
+</div>
       </div>
       <div className="mb-3">
         <label htmlFor="description" className="form-label">Description</label>
@@ -108,9 +145,8 @@ const SingleProduct = () => {
           type="text"
           className="form-control"
           id="ratingRate"
-          name="rating.rate"
-          value={formData.rating.rate}
-          onChange={handleChange}
+          name="ratingRate"
+          onChange={ChangeRating}
         />
       </div>
       <div className="mb-3">
@@ -119,9 +155,9 @@ const SingleProduct = () => {
           type="number"
           className="form-control"
           id="ratingCount"
-          name="rating.count"
-          value={formData.rating.count}
-          onChange={handleChange}
+          name="ratingCount"
+          // value={formData.rating.count}
+          onChange={CountChange}
         />
       </div>
       <div className="d-flex align-items-center justify-content-center">
@@ -130,7 +166,8 @@ const SingleProduct = () => {
     </form>
 
     </section>
+    </>
   );
 };
 
-export default SingleProduct;
+export default PostProduct;

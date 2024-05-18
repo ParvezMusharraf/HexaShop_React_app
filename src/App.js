@@ -7,7 +7,6 @@ import Women from './Pages/Women';
 import Kids from "./Pages/Kids"
 import About from './Pages/About';
 import Products from './Pages/Product'
-import SingleProduct from './Pages/SingleProduct'
 import Contact from './Pages/Contact'
 import FeaturesPage1 from './Pages/Feature_1'
 import FeaturesPage2 from './Pages/Feature_2'
@@ -15,6 +14,8 @@ import FeaturesPage3 from './Pages/Feacture_3'
 import Explore from './Pages/Explore';
 import Footer from './Components/Footer/Footer';
 import ProductSection from './Components/ProductSection/ProductSection'
+import PostProduct from './Pages/PostProduct';
+
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
           <Route path="/kids" element={<Kids />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/single-product" element={<SingleProduct />} />
+          <Route path="/single-product" element={<PostProduct />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/features/page-1" element={<FeaturesPage1 />} />
           <Route path="/features/page-2" element={<FeaturesPage2 />} />

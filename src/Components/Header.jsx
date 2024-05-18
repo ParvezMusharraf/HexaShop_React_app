@@ -5,8 +5,6 @@ import logo from '../assets/images/logo.png'
 
 // Create Header component
 const Header = () => {
-
-
     return (
         <header className="header-area header-sticky">
             <div className="container">

@@ -66,3 +66,16 @@ export const getAllProductsList = async()=>{
     }
 }
 
+
+
+// Post Requiest for Product 
+
+export const SaveProduct = async(data)=>{
+    try{
+        const res = await axios.post(`${MAIN_LocalURL}/SaveProduct`,data)
+        return res
+    }
+    catch(error){
+        console.log(error)
+    }
+}
