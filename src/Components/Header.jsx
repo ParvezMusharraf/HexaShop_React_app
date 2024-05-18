@@ -2,6 +2,8 @@
 import React from 'react';
 import { Link} from 'react-router-dom';
 import logo from '../assets/images/logo.png'
+import { CiShoppingCart } from "react-icons/ci";
+
 
 // Create Header component
 const Header = () => {
@@ -46,7 +48,9 @@ const Header = () => {
                                 </li>
 
                                 {/* Explore */}
-                                <li><Link to="/explore" className="scroll-to-section">Explore</Link></li>
+                                <li><Link to="/explore" className="scroll-to-section" style={{
+                                    fontSize:"20px"
+                                }}><CiShoppingCart /></Link></li>
                             </ul>
 
                             {/* Menu Trigger */}
