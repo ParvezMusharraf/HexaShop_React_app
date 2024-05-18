@@ -15,6 +15,7 @@ import Explore from './Pages/Explore';
 import Footer from './Components/Footer/Footer';
 import ProductSection from './Components/ProductSection/ProductSection'
 import PostProduct from './Pages/PostProduct';
+import AdminHome from './Components/Admin/Landingpage/AdminHome'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/Admin" element={<AdminHome/>}/>
           <Route path="/productsSection" element={<ProductSection/>}/>
           <Route path="/men" element={<Men />} />
           <Route path="/women" element={<Women />} />
