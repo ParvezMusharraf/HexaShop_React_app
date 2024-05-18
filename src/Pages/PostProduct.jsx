@@ -6,17 +6,18 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const PostProduct = () => {
-  const [counter,setCounter]=useState()
+  const [counter,setCounter]=useState(null)
   const [ratingCounter,setRatingCounter]=useState()
+  const [error,setError]=useState({})
   const [formData, setFormData] = useState({
     title: "",
-    price: 0,
+    price: "",
     description: "",
     category: "",
     image: "",
     rating: {
       rate: "",
-      count: 0,
+      count: "",
     },
   });
   const CountChange = (e)=>{
@@ -30,6 +31,26 @@ const PostProduct = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+
+    if (name === 'title' && value.length > 0) {
+      setError({ ...error, title: '' });
+    }
+    if (name === 'category' && value.length != 0) {
+      setError({ ...error, categoryErr: '' });
+    }
+    if (name === 'description' && value.length > 0) {
+      setError({ ...error, description: '' });
+    }
+    if (name === 'image' && value.length > 0) {
+      setError({ ...error, image: '' });
+    }
+    if (name === 'ratingCount' && counter.length >= 0) {
+      setError({ ...error, ratingCounErr: '' });
+    }
+    if (name === 'price' && value.length > 0) {
+      setError({ ...error, priceErr: '' });
+    }
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -42,6 +63,30 @@ const PostProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(formData.title.length == 0){
+      setError({...error,title:"this feild Is required"})
+      return
+    }
+    if(formData.category == ""){
+      setError({...error,categoryErr:"this feild Is required"})
+      return
+    }
+    if(formData.description.length == 0){
+      setError({...error,description:"this feild Is required"})
+      return
+    }
+    if(formData.price.length <= 0){
+      setError({...error,priceErr:"this feild Is required"})
+      return
+    }
+    if(formData.image.length == 0){
+      setError({...error,image:"this feild Is required"})
+      return
+    }
+    if(counter >= 0){
+      setError({...error,ratingCounErr:"this feild Is required"})
+      return
+    }
     SaveProduct(formData).then((res)=>{
       if(res="Title, price, and category are required"){
         const notify = () => toast.warn("Somthing Went Wrong");
@@ -74,10 +119,11 @@ const PostProduct = () => {
         alignItems: "center",
       }}
     >
+      <h4>Post Product</h4>
           <form onSubmit={handleSubmit} className="p-4">
       <div className="mb-3 row">
         <div className="col-md-6">
-          <label htmlFor="title" className="form-label">Title</label>
+          <label htmlFor="title" className="form-label">Title<span className="text-danger">*</span></label>
           <input
             type="text"
             className="form-control"
@@ -86,9 +132,10 @@ const PostProduct = () => {
             value={formData.title}
             onChange={handleChange}
           />
+              {error.title && <div className="text-danger">{error.title}</div>}
         </div>
         <div className="col-md-6">
-  <label htmlFor="category" className="form-label">Category</label>
+  <label htmlFor="category" className="form-label">Category<span className="text-danger">*</span></label>
   <select
     className="form-control"
     id="category"
@@ -96,17 +143,18 @@ const PostProduct = () => {
     value={formData.category}
     onChange={handleChange}
   >
-    <option value="">Select a category</option>
+    <option value={0}>Select a category</option>
     <option value="men's clothing">men's clothing</option>
     <option value="women's clothing">women's clothing</option>
     <option value="kid's clothing">kid's clothing</option>
     <option value="jewelery">jewelery</option>
     <option value="electronics">electronics</option>
   </select>
+  {error.categoryErr && <div className="text-danger">{error.categoryErr}</div>}
 </div>
       </div>
       <div className="mb-3">
-        <label htmlFor="description" className="form-label">Description</label>
+        <label htmlFor="description" className="form-label">Description<span className="text-danger">*</span></label>
         <textarea
           className="form-control"
           id="description"
@@ -114,10 +162,11 @@ const PostProduct = () => {
           value={formData.description}
           onChange={handleChange}
         />
+            {error.description && <div className="text-danger">{error.description}</div>}
       </div>
       <div className="mb-3 row">
         <div className="col-md-6">
-          <label htmlFor="price" className="form-label">Price</label>
+          <label htmlFor="price" className="form-label">Price<span className="text-danger">*</span></label>
           <input
             type="number"
             className="form-control"
@@ -126,9 +175,10 @@ const PostProduct = () => {
             value={formData.price}
             onChange={handleChange}
           />
+              {error.priceErr && <div className="text-danger">{error.priceErr}</div>}
         </div>
         <div className="col-md-6">
-          <label htmlFor="image" className="form-label">Image URL</label>
+          <label htmlFor="image" className="form-label">Image URL<span className="text-danger">*</span></label>
           <input
             type="text"
             className="form-control"
@@ -137,6 +187,7 @@ const PostProduct = () => {
             value={formData.image}
             onChange={handleChange}
           />
+              {error.image && <div className="text-danger">{error.image}</div>}
         </div>
       </div>
       <div className="mb-3">
@@ -150,15 +201,16 @@ const PostProduct = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="ratingCount" className="form-label">Rating Count</label>
+        <label htmlFor="ratingCount" className="form-label">Quantities<span className="text-danger">*</span></label>
         <input
           type="number"
           className="form-control"
           id="ratingCount"
           name="ratingCount"
-          // value={formData.rating.count}
+          value={counter}
           onChange={CountChange}
         />
+            {error.ratingCounErr && <div className="text-danger">{error.ratingCounErr}</div>}
       </div>
       <div className="d-flex align-items-center justify-content-center">
       <button type="submit" className="btn btn-outline-dark">Submit</button>
