@@ -37,7 +37,7 @@ function App() {
           <Route path="/features/page-1" element={<FeaturesPage1 />} />
           <Route path="/features/page-2" element={<FeaturesPage2 />} />
           <Route path="/features/page-3" element={<FeaturesPage3 />} />
-          <Route path="/explore" element={<Explore />} />
+          <Route path="/addToCart" element={<Explore />} />
         </Routes>
       </Router>
       <Footer/>

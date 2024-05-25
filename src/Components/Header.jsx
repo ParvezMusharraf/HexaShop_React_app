@@ -3,10 +3,19 @@ import React from 'react';
 import { Link} from 'react-router-dom';
 import logo from '../assets/images/logo.png'
 import { CiShoppingCart } from "react-icons/ci";
+import { useCart } from 'react-use-cart';
+import ShoppingCart from '../Comman/ShopingCart';
+
 
 
 // Create Header component
 const Header = () => {
+    const {
+        isEmpty,
+        items,
+        totalUniqueItems
+      } = useCart();
+
     return (
         <header className="header-area header-sticky">
             <div className="container">
@@ -48,9 +57,9 @@ const Header = () => {
                                 </li>
 
                                 {/* Explore */}
-                                <li><Link to="/explore" className="scroll-to-section" style={{
-                                    fontSize:"25px"
-                                }}><CiShoppingCart /></Link></li>
+                                <li>
+                                <ShoppingCart  totalUniqueItems={totalUniqueItems} />
+                                </li>
                             </ul>
 
                             {/* Menu Trigger */}

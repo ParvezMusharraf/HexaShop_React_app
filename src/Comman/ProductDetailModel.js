@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import {useCart} from 'react-use-cart';
+import { toast,ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const ProductDetialModel = ({ setOpen, obj }) => {
+  const [data,setData]= useState()
+  const {addItem} = useCart()
+
   const handleCancel = () => {
     console.log(`Clicked cancel button${obj._id} `);
     setOpen(false);
   };
 
+  const AddtoCart = (obj)=>{
+    addItem({ ...obj, id: obj._id })
+    const notify = ()=>{
+      toast.success("Item added successfully")
+    }
+    notify()
+    // setTimeout(()=>{
+    // },[2000])
+  }
+
   return (
     <>
+    <ToastContainer/>
       <div
         class="modal fade"
         id="exampleModal"
@@ -56,7 +75,10 @@ const ProductDetialModel = ({ setOpen, obj }) => {
                   <button type="button" className="btn btn-primary p-1 m-1">
                     Buy Now
                   </button>
-                  <button type="button" className="btn btn-secondary p-1 m-2">
+                  <button type="button" 
+                  onClick={()=> AddtoCart(obj)
+                    }
+                   className="btn btn-secondary p-1 m-2">
                     Add to Cart
                   </button>
                 </div>
