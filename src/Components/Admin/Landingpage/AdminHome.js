@@ -1,13 +1,14 @@
-import React from 'react'
-
+import Sidebar from '../components/sidebar';
+import '../Landingpage/AdminHomeCss.css'
 const AdminHome = () => {
   return (
-    <div className='container' style={{
-      marginTop:"100px"
-    }}>
-      <h1>THis pade is under Construction</h1>
+    <div className='admin-container'>
+      <Sidebar/>
+      <div className='content' style={{ marginTop: '100px' }}>
+        <h1>This page is under Construction</h1>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminHome
+export default AdminHome;

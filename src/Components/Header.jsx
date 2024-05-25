@@ -49,7 +49,7 @@ const Header = () => {
 
                                 {/* Explore */}
                                 <li><Link to="/explore" className="scroll-to-section" style={{
-                                    fontSize:"20px"
+                                    fontSize:"25px"
                                 }}><CiShoppingCart /></Link></li>
                             </ul>
 

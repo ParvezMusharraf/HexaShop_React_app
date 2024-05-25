@@ -16,7 +16,7 @@ const Banner = () => {
 
     useEffect(()=>{
         getCatagoriesList().then((res)=>{
-            setCatagoriesList(res);
+            setCatagoriesList(res.slice(0,4));
             console.log(res)
         }
         )

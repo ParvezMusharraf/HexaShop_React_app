@@ -22,6 +22,9 @@ const PostProduct = () => {
   });
   const CountChange = (e)=>{
     const count  = e.target.value
+    if (count.length >= 0) {
+      setError({ ...error, ratingCounErr: '' });
+    }
     setCounter(count)
   }
   const ChangeRating = (e)=>{
@@ -45,12 +48,10 @@ const PostProduct = () => {
     if (name === 'image' && value.length > 0) {
       setError({ ...error, image: '' });
     }
-    if (name === 'ratingCount' && counter.length >= 0) {
-      setError({ ...error, ratingCounErr: '' });
-    }
     if (name === 'price' && value.length > 0) {
       setError({ ...error, priceErr: '' });
     }
+   
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -83,19 +84,16 @@ const PostProduct = () => {
       setError({...error,image:"this feild Is required"})
       return
     }
-    if(counter >= 0){
+    if(counter <= 0){
       setError({...error,ratingCounErr:"this feild Is required"})
       return
     }
     SaveProduct(formData).then((res)=>{
-      if(res="Title, price, and category are required"){
-        const notify = () => toast.warn("Somthing Went Wrong");
-        notify()
-      }else{
-        const notify = () => toast.success("Product Posted Successfully");
-        notify()
-    }
+      const notify = () => toast.success("Product Posted Successfully");
+      notify()
     }).catch((err)=>{
+      const notify = () => toast.warn("Somthing Went Wrong");
+      notify()
       console.log(err)
        })
     console.log(formData);
