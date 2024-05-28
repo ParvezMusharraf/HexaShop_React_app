@@ -4,6 +4,7 @@ import { useCart } from "react-use-cart";
 const Explore = () => {
   const { isEmpty, totalUniqueItems, items, updateItemQuantity, removeItem } =
     useCart();
+    const grandTotal = items.reduce((total, item) => total + item.price, 0);
   const [freeShipping, setFreeShipping] = useState(false);
 
   useEffect(() => {
@@ -25,7 +26,6 @@ const Explore = () => {
       </p>
     );
 
-  const grandTotal = items.reduce((total, item) => total + item.price, 0);
 
   return (
     <section
