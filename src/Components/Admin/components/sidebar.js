@@ -44,7 +44,7 @@ const Sidebar = () => {
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <div className="sidebarContainer">
           <ul>
-            <li><Link to="/admin/all-products">All Products</Link></li>
+            {/* <li><Link to="/admin/all-products">All Products</Link></li> */}
             <li><Link to="/admin/manage-products">Manage Products</Link></li>
             <li><Link to="/admin/post-products">Post Products</Link></li>
           </ul>

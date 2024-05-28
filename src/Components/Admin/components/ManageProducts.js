@@ -5,7 +5,35 @@ const ManageProducts = () => {
   return (
     <div>
         <Sidebar/>
-      This is ManageProducts
+          <div>
+         <h1>
+          this is manage property
+         </h1>
+         <h1>
+          this is manage property
+         </h1>
+         <h1>
+          this is manage property
+         </h1>
+         <h1>
+          this is manage property
+         </h1>
+         <h1>
+          this is manage property
+         </h1>
+         <h1>
+          this is manage property
+         </h1>
+         <h1>
+          this is manage property
+         </h1>
+         <h1>
+          this is manage property
+         </h1>
+         <h1>
+          this is manage property
+         </h1>
+          </div>
     </div>
   )
 }

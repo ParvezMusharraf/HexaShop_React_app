@@ -14,7 +14,7 @@ import FeaturesPage3 from './Pages/Feacture_3'
 import Explore from './Pages/Explore';
 import Footer from './Components/Footer/Footer';
 import ProductSection from './Components/ProductSection/ProductSection'
-import PostProduct from './Pages/PostProduct';
+import PostProduct from './Components/Admin/components/PostForm/PostProduct';
 import AdminHome from './Components/Admin/Landingpage/AdminHome'
 import ManageProducts from './Components/Admin/components/ManageProducts';
 
