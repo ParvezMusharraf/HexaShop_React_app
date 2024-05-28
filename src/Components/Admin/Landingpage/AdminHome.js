@@ -6,6 +6,25 @@ const AdminHome = () => {
       <Sidebar/>
       <div className='content' style={{ marginTop: '100px' }}>
         <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
+        <h1>This page is under Construction</h1>
       </div>
     </div>
   );

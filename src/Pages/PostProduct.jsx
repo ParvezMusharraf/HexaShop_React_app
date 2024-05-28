@@ -3,6 +3,7 @@ import { useState } from "react";
 import {SaveProduct} from '../Request/Requiests'
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Sidebar from '../Components/Admin/components/sidebar'
 
 
 const PostProduct = () => {
@@ -102,6 +103,7 @@ const PostProduct = () => {
     <>
     <ToastContainer
     position="top-center"/>
+    <Sidebar/>
     <section
       className="container w-50"
       style={{

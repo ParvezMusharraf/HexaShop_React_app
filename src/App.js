@@ -16,6 +16,7 @@ import Footer from './Components/Footer/Footer';
 import ProductSection from './Components/ProductSection/ProductSection'
 import PostProduct from './Pages/PostProduct';
 import AdminHome from './Components/Admin/Landingpage/AdminHome'
+import ManageProducts from './Components/Admin/components/ManageProducts';
 
 
 function App() {
@@ -26,13 +27,15 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Admin" element={<AdminHome/>}/>
+          <Route path="/admin/manage-products" element={<ManageProducts/>}/>
           <Route path="/productsSection" element={<ProductSection/>}/>
           <Route path="/men" element={<Men />} />
           <Route path="/women" element={<Women />} />
           <Route path="/kids" element={<Kids />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/single-product" element={<PostProduct />} />
+          {/* <Route path="/single-product" element={<PostProduct />} /> */}
+          <Route path="/admin/post-products" element={<PostProduct />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/features/page-1" element={<FeaturesPage1 />} />
           <Route path="/features/page-2" element={<FeaturesPage2 />} />
