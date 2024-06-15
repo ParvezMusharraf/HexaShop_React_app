@@ -17,6 +17,7 @@ import ProductSection from './Components/ProductSection/ProductSection'
 import PostProduct from './Components/Admin/components/PostForm/PostProduct';
 import AdminHome from './Components/Admin/Landingpage/AdminHome'
 import ManageProducts from './Components/Admin/components/ManageProducts/ManageProducts';
+import Login from './login/login'
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/features/page-1" element={<FeaturesPage1 />} />
           <Route path="/features/page-2" element={<FeaturesPage2 />} />
-          <Route path="/features/page-3" element={<FeaturesPage3 />} />
+          <Route path="/login" element={<Login/>} />
           <Route path="/addToCart" element={<Explore />} />
         </Routes>
       </Router>

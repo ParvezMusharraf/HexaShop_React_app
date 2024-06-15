@@ -52,7 +52,8 @@ const Header = () => {
                                         <li><Link to="/features/page-1">Features Page 1</Link></li>
                                         <li><Link to="/features/page-2">Features Page 2</Link></li>
                                         <li><Link to="/features/page-3">Features Page 3</Link></li>
-                                        <li><a rel="nofollow" href="https://templatemo.com/page/4" target="_blank">Template Page 4</a></li>
+                                        <li><Link to="/login">Login</Link></li>
+                                        {/* <li><a rel="nofollow" href="https://templatemo.com/page/4" target="_blank">Template Page 4</a></li> */}
                                     </ul>
                                 </li>
 
