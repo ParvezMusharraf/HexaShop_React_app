@@ -88,4 +88,13 @@ export const loginUser = async(data)=>{
         console.log(error)
     }
 }
+export const SignUpUser = async(data)=>{
+    try{
+        const res = await axios.post(`${MAIN_LocalURL}/Auth/User`,data)
+        return res?.data
+    }
+    catch(error){
+        console.log(error)
+    }
+}
 

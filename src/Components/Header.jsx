@@ -1,12 +1,11 @@
 // Import necessary modules
 import React from 'react';
-import { Link} from 'react-router-dom';
-import logo from '../assets/images/logo.png'
-import { CiShoppingCart } from "react-icons/ci";
+import { Link } from 'react-router-dom';
+import logo from '../assets/images/logo.png';
 import { useCart } from 'react-use-cart';
 import ShoppingCart from '../Comman/ShopingCart';
-
-
+import { UserAuth } from '../context/UserContaxt';
+import { useNavigate } from 'react-router-dom';
 
 // Create Header component
 const Header = () => {
@@ -14,26 +13,39 @@ const Header = () => {
         isEmpty,
         items,
         totalUniqueItems
-      } = useCart();
+    } = useCart();
+
+    const navigate = useNavigate();
+    const { userExist, setUserExist } = UserAuth();
+
+    const handleLogOut = () => {
+        localStorage.setItem("username", null);
+        localStorage.setItem("email", null);
+        localStorage.setItem("userId", null);
+        setUserExist(false);
+        alert("User logged out successfully");
+        console.log(userExist); // This will log `false` because setUserExist(false) updates userExist state immediately
+        navigate("/"); // Redirect to the homepage after logout
+    };
 
     return (
         <header className="header-area header-sticky">
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <nav className="main-nav ">
+                        <nav className="main-nav">
                             {/* Logo */}
                             <Link to="/" className="logo">
                                 <img src={logo} alt="Logo" />
                             </Link>
 
                             {/* Menu */}
-                            <ul className="nav ">
+                            <ul className="nav">
                                 <li><Link to="/" className="scroll-to-section" activeClassName="active">Home</Link></li>
                                 <li><Link to="/men" className="scroll-to-section">Men's</Link></li>
                                 <li><Link to="/women" className="scroll-to-section">Women's</Link></li>
                                 <li><Link to="/kids" className="scroll-to-section">Kid's</Link></li>
-                                
+
                                 {/* Pages */}
                                 <li className="submenu">
                                     <Link to="#" className="dropdown-toggle">Pages</Link>
@@ -45,21 +57,26 @@ const Header = () => {
                                     </ul>
                                 </li>
 
-                                {/* Features */}
+                                {/* User Authentication */}
                                 <li className="submenu">
-                                    <Link to="#" className="dropdown-toggle">Features</Link>
+                                    <Link to="#" className="dropdown-toggle">User</Link>
                                     <ul>
-                                        <li><Link to="/features/page-1">Features Page 1</Link></li>
-                                        <li><Link to="/features/page-2">Features Page 2</Link></li>
-                                        <li><Link to="/features/page-3">Features Page 3</Link></li>
-                                        <li><Link to="/login">Login</Link></li>
-                                        {/* <li><a rel="nofollow" href="https://templatemo.com/page/4" target="_blank">Template Page 4</a></li> */}
+                                        {!userExist ? (
+                                            <>
+                                                {/* Render signup and login links if user is not logged in */}
+                                                <li><Link to="/signup">SignUp</Link></li>
+                                                <li><Link to="/login">Login</Link></li>
+                                            </>
+                                        ) : (
+                                            // Render logout link if user is logged in
+                                            <li onClick={handleLogOut}>Logout</li>
+                                        )}
                                     </ul>
                                 </li>
 
-                                {/* Explore */}
+                                {/* Shopping Cart */}
                                 <li>
-                                <ShoppingCart  totalUniqueItems={totalUniqueItems} />
+                                    <ShoppingCart totalUniqueItems={totalUniqueItems} />
                                 </li>
                             </ul>
 
@@ -74,4 +91,5 @@ const Header = () => {
         </header>
     );
 };
+
 export default Header;

@@ -18,9 +18,11 @@ import PostProduct from './Components/Admin/components/PostForm/PostProduct';
 import AdminHome from './Components/Admin/Landingpage/AdminHome'
 import ManageProducts from './Components/Admin/components/ManageProducts/ManageProducts';
 import Login from './login/login'
+import Signup from './login/signup';
 
 
 function App() {
+
   return (
     <div className="App">
       <Router>
@@ -39,7 +41,7 @@ function App() {
           <Route path="/admin/post-products" element={<PostProduct />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/features/page-1" element={<FeaturesPage1 />} />
-          <Route path="/features/page-2" element={<FeaturesPage2 />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login/>} />
           <Route path="/addToCart" element={<Explore />} />
         </Routes>

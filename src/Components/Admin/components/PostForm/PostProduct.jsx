@@ -20,6 +20,7 @@ const PostProduct = () => {
       rate: "",
       count: "",
     },
+    userid:localStorage.getItem("userId")
   });
   const CountChange = (e)=>{
     const count  = e.target.value

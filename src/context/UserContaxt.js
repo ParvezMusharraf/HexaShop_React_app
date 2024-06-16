@@ -12,7 +12,7 @@ export default function UserContaxtProvider({children}) {
 
 
   return (
-    <UserContaxt.Provider value={{userExist,setUserExist,email,setEmail,password,setPassword}}>
+    <UserContaxt.Provider value={{userExist,setUserExist,email,setEmail,password,setPassword,userName ,setUserName}}>
         {children}
     </UserContaxt.Provider>
   )
