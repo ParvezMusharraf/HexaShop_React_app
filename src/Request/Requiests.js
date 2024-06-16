@@ -79,3 +79,13 @@ export const SaveProduct = async(data)=>{
         console.log(error)
     }
 }
+export const loginUser = async(data)=>{
+    try{
+        const res = await axios.post(`${MAIN_LocalURL}/Auth/Login`,data)
+        return res?.data
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+
