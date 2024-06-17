@@ -61,15 +61,15 @@ const Header = () => {
                                 <li className="submenu">
                                     <Link to="#" className="dropdown-toggle">User</Link>
                                     <ul>
-                                        {!userExist ? (
+                                        {userExist ? (
+                                            <li onClick={handleLogOut}>Logout</li>
+                                        ) : (
+                                            // Render logout link if user is logged in
                                             <>
                                                 {/* Render signup and login links if user is not logged in */}
                                                 <li><Link to="/signup">SignUp</Link></li>
                                                 <li><Link to="/login">Login</Link></li>
                                             </>
-                                        ) : (
-                                            // Render logout link if user is logged in
-                                            <li onClick={handleLogOut}>Logout</li>
                                         )}
                                     </ul>
                                 </li>

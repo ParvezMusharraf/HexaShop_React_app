@@ -53,7 +53,7 @@ const Login = () => {
                  <lebal className="m-2">Password:</lebal>
                 <div className="m-2"><input type='password' onChange={(e)=> setPassword(e.target.value)} /></div>
             </div>
-        <button className='btn btn-dark col-1'onClick={()=> GetLogin}  >Login</button>
+        <button className='btn btn-dark col-1'onClick={GetLogin}  >Login</button>
         </div>
     </div>
   )

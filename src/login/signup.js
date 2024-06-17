@@ -51,7 +51,7 @@ const Signup = () => {
                 onChange={(e)=> setPassword(e.target.value)} 
                 /></div>
             </div>
-        <button className='btn btn-dark col-1' onClick={()=>handleSubmit} >Signup</button>
+        <button className='btn btn-dark col-1' onClick={handleSubmit} >Signup</button>
         </div>
     </div>
   )
