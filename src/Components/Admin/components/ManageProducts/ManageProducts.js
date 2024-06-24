@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Tabs,Card } from 'antd';
 import Sidebar from '../sidebar';
 import '../ManageProducts/manageProducts.css'; // Ensure this path is correct
-import {getAllProductsList} from '../../../../Request/Requiests'
+import {getAllProductsListByUserID,deleteProductById} from '../../../../Request/Requiests'
 
 
 
@@ -54,27 +54,49 @@ const ManageProducts = () => {
   const [items, setItems] = useState(initialItems);
   const [productList,setProductList]= useState([])
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [dataexist,setDataExist] = useState(false)
 
 
   const onChange = (newActiveKey) => {
     setActiveKey(newActiveKey);
   };
+  const useridfsd = localStorage.getItem("userId")
 
   useEffect(() => {
-    getAllProductsList().then((res) => {
-      setProductList(res.data);
-      setFilteredProducts(res.data.filter(product => product.category === categoryMapping[activeKey]));
+    getAllProductsListByUserID({userid:useridfsd}).then((res) => {
+
+      if(res?.msg == "No products found for the user"){
+      setDataExist(true)
+        return   
+        }
+      setProductList(res);
+      setFilteredProducts(res?.filter(product => product.category === categoryMapping[activeKey]));
       // console.log(res.data);
     });
   }, []);
 
   useEffect(() => {
-    setFilteredProducts(productList.filter(product => product.category === categoryMapping[activeKey]));
+    setFilteredProducts(productList?.filter(product => product.category === categoryMapping[activeKey]));
   }, [activeKey, productList]);
+
+
+  const handleDelete = async(productId)=>{
+    try {
+      const res = await deleteProductById(productId);
+      alert("Product deleted successfully");
+    } catch (error) {
+      alert("Failed to delete product");
+    }
+  };
   
   return (
     <div style={{ marginTop: '150px' }}>
     <Sidebar />
+
+    {
+      dataexist ? <>
+      <div className='justify-content-center align-item-center d-flex'> <h1>There is no data for selected user</h1></div>
+      </> :
     <div>
       <div className="custom-tabs">
         <Tabs
@@ -85,7 +107,7 @@ const ManageProducts = () => {
             ...item,
             children: (
               <div className="product-grid">
-                {filteredProducts.map(product => (
+                {filteredProducts?.map(product => (
                   <Card
                     key={product._id}
                     title={product.title}
@@ -94,7 +116,7 @@ const ManageProducts = () => {
                   >
                     <p>{product.description}</p>
                     <p>Price: ${product.price}</p>
-                    <button className='btn btn-danger'>Delete</button>
+                    <button className='btn btn-danger' onClick={()=>handleDelete(product._id)}>Delete</button>
                     <button className='btn btn-success'>Update</button>
                   </Card>
                 ))}
@@ -104,6 +126,7 @@ const ManageProducts = () => {
         />
       </div>
     </div>
+    }
   </div>  );
 }
 

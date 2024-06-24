@@ -17,15 +17,16 @@ import ProductSection from './Components/ProductSection/ProductSection'
 import PostProduct from './Components/Admin/components/PostForm/PostProduct';
 import AdminHome from './Components/Admin/Landingpage/AdminHome'
 import ManageProducts from './Components/Admin/components/ManageProducts/ManageProducts';
-import Login from './login/login'
+import Login from './login/login';
 import Signup from './login/signup';
-
+import InitializeApp from './login/InitializeApp';
 
 function App() {
 
   return (
     <div className="App">
       <Router>
+      <InitializeApp />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />

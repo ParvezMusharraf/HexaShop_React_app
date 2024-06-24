@@ -65,7 +65,24 @@ export const getAllProductsList = async()=>{
         console.log(error)
     }
 }
+export const getAllProductsListByUserID = async(data)=>{
+    try {
+        const res = await axios.post(`${MAIN_LocalURL}/allProductListByUserId`,data)
+        return res?.data
+    }
+    catch(error){
+        console.log(error)
+    }
+}
 
+export const deleteProductById = async(productId)=>{
+    try {
+        const res = await axios.delete(`${MAIN_LocalURL}/deleteproductbyid/${productId}`);
+        return res
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 // Post Requiest for Product 

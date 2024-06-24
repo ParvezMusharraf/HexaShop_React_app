@@ -21,10 +21,11 @@ const Login = () => {
     
             if (res.userAvailable) {
                 console.log(res, "userinfo");
-                setUser(res.user);
+                setUser(res);
                 setUserExist(true);
-                localStorage.setItem("userId", res.user._id);
-                localStorage.setItem("userName", res.user.username);
+                localStorage.setItem("userId", res._id);
+                localStorage.setItem("userName", res.username);
+                localStorage.setItem("token", res.token); // Store the token
                 alert(res.message); // Display message from the response
                 navigate("/");
             } else {
