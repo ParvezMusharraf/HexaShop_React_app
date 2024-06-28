@@ -20,12 +20,14 @@ import ManageProducts from './Components/Admin/components/ManageProducts/ManageP
 import Login from './login/login';
 import Signup from './login/signup';
 import InitializeApp from './login/InitializeApp';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function App() {
-
+ 
   return (
     <div className="App">
-      <Router>
+      {/* <Router> */}
       <InitializeApp />
         <Header />
         <Routes>
@@ -46,7 +48,7 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/addToCart" element={<Explore />} />
         </Routes>
-      </Router>
+      {/* </Router> */}
       <Footer/>
     </div>
   );

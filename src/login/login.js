@@ -42,10 +42,6 @@ const Login = () => {
         marginTop:"100px"
     }}>
         <div className='container d-flex align-content-center justify-content-center row' >
-            {/* <div className='d-flex justify-content-center align-items-start col-12 p-3'>
-                <lebal className="m-2">UserName:</lebal>
-                <div className="m-2"><input type='text' /></div>
-            </div> */}
             <div className='d-flex justify-content-center align-items-center col-12 p-3'>
                 <lebal className="m-2">Email:</lebal>
                 <div className="m-2"><input type='email'  onChange={(e)=> setEmail(e.target.value)}/></div>

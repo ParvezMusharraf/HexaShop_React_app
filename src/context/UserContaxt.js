@@ -1,4 +1,6 @@
-import React, {useContext, createContext, useState ,useEffect} from 'react';
+import React, {useContext, createContext, useState ,useEffect,} from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 
 export const UserContaxt = createContext();
@@ -11,23 +13,23 @@ export default function UserContaxtProvider({children}) {
     const [userName ,setUserName] = useState()
 
 
-    useEffect(() => {
-      // Check for user information in localStorage
-      const storedUserExist = localStorage.getItem('userExist') === 'true';
-      const storedEmail = localStorage.getItem('email');
-      const storedUserName = localStorage.getItem('userName');
+    const navigate = useNavigate()
 
-      if (storedUserExist && storedEmail && storedUserName) {
-          setUserExist(true);
-          setEmail(storedEmail);
-          setUserName(storedUserName);
-      }
-  }, []);
 
+    const handleLogOut = () => {
+      localStorage.setItem("username", null);
+      localStorage.setItem("email", null);
+      localStorage.setItem("userId", null);
+      localStorage.setItem("token", null);
+      setUserExist(false);
+      alert("User logged out successfully");
+      console.log(userExist); // This will log `false` because setUserExist(false) updates userExist state immediately
+      navigate("/"); // Redirect to the homepage after logout
+  };
 
 
   return (
-    <UserContaxt.Provider value={{userExist,setUserExist,email,setEmail,password,setPassword,userName ,setUserName}}>
+    <UserContaxt.Provider value={{userExist,setUserExist,email,setEmail,password,setPassword,userName ,setUserName,handleLogOut}}>
         {children}
     </UserContaxt.Provider>
   )

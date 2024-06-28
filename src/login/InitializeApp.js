@@ -1,24 +1,33 @@
-import React, { useEffect } from 'react';
-import { UserAuth } from '../context/UserContaxt';
+import React, { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { UserAuth } from "../context/UserContaxt"; // Ensure the path and name are correct
 
 const InitializeApp = () => {
-    const { setUserExist, setEmail, setUserName } = UserAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { setUserExist, userExist } = UserAuth();
 
-    useEffect(() => {
-        // Check for user information in localStorage
-        const storedUserExist = localStorage.getItem('userExist') === 'true';
-        const storedEmail = localStorage.getItem('email');
-        const storedUserName = localStorage.getItem('userName');
+  const restrictedPaths = [
+    "/admin",
+    "/admin/manage-products",
+    "/admin/post-products",
+  ];
 
-        if (storedUserExist && storedEmail && storedUserName) {
-            setUserExist(true);
-            console.log("jflkhdjfjshf")
-            setEmail(storedEmail);
-            setUserName(storedUserName);
-        }
-    }, [setUserExist, setEmail, setUserName]);
+  useEffect(() => {
+    const checkAuthentication = () => {
+      let token = localStorage.getItem("token");      
+      if (!token || token === "null") {
+        setUserExist(false);
+        // navigate("/login");
+      } else {
+        setUserExist(true);
+      }
+    };
 
-    return null;
+    checkAuthentication();
+  }, [location, navigate, setUserExist, userExist]);
+
+  return null;
 };
 
 export default InitializeApp;

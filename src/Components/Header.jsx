@@ -5,7 +5,7 @@ import logo from '../assets/images/logo.png';
 import { useCart } from 'react-use-cart';
 import ShoppingCart from '../Comman/ShopingCart';
 import { UserAuth } from '../context/UserContaxt';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 // Create Header component
 const Header = () => {
@@ -15,18 +15,18 @@ const Header = () => {
         totalUniqueItems
     } = useCart();
 
-    const navigate = useNavigate();
-    const { userExist, setUserExist } = UserAuth();
+    const { userExist,handleLogOut  } = UserAuth();
 
-    const handleLogOut = () => {
-        localStorage.setItem("username", null);
-        localStorage.setItem("email", null);
-        localStorage.setItem("userId", null);
-        setUserExist(false);
-        alert("User logged out successfully");
-        console.log(userExist); // This will log `false` because setUserExist(false) updates userExist state immediately
-        navigate("/"); // Redirect to the homepage after logout
-    };
+    // const handleLogOut = () => {
+    //     localStorage.setItem("username", null);
+    //     localStorage.setItem("email", null);
+    //     localStorage.setItem("userId", null);
+    //     localStorage.setItem("token", null);
+    //     setUserExist(false);
+    //     alert("User logged out successfully");
+    //     console.log(userExist); // This will log `false` because setUserExist(false) updates userExist state immediately
+    //     navigate("/"); // Redirect to the homepage after logout
+    // };
 
     return (
         <header className="header-area header-sticky">
