@@ -39,20 +39,57 @@ const Login = () => {
 
   return (
     <div style={{
-        marginTop:"100px"
-    }}>
-        <div className='container d-flex align-content-center justify-content-center row' >
-            <div className='d-flex justify-content-center align-items-center col-12 p-3'>
-                <lebal className="m-2">Email:</lebal>
-                <div className="m-2"><input type='email'  onChange={(e)=> setEmail(e.target.value)}/></div>
-            </div>
-            <div className='d-flex justify-content-center align-items-center col-12 p-3'>
-                 <lebal className="m-2">Password:</lebal>
-                <div className="m-2"><input type='password' onChange={(e)=> setPassword(e.target.value)} /></div>
-            </div>
-        <button className='btn btn-dark col-1'onClick={GetLogin}  >Login</button>
+        // marginTop: "100px",
+        backgroundColor: "#f8f9fa",
+        borderRadius: "8px",
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        padding: "30px",
+        maxWidth: "400px",
+        margin: "140px auto"
+      }}>
+        <h2 style={{
+          textAlign: "center",
+          marginBottom: "30px",
+          color: "#333"
+        }}>Login</h2>
+        <div className='container'>
+          <div className='mb-4'>
+            <label className="form-label" htmlFor="email">Email:</label>
+            <input 
+              type='email'
+              id="email"
+              className="form-control"
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+            />
+          </div>
+          <div className='mb-4'>
+            <label className="form-label" htmlFor="password">Password:</label>
+            <input 
+              type='password'
+              id="password"
+              className="form-control"
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+            />
+          </div>
+          <button 
+            className='btn btn-dark w-100'
+            onClick={GetLogin}
+            style={{
+            //   backgroundColor: "#007bff",
+            borderRadius:"20px",
+              border: "none",
+              padding: "10px",
+              fontSize: "16px",
+              fontWeight: "bold",
+              transition: "background-color 0.3s"
+            }}
+          >
+            Login
+          </button>
         </div>
-    </div>
+      </div>
   )
 }
 

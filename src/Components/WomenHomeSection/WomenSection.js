@@ -1,7 +1,35 @@
-import React from 'react';
-import Women1 from '../../assets/images/women-01.jpg'
+import React, { useState, useEffect } from 'react';
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+import { getProductListByCategory } from '../../Request/Requiests';
 
 const WomenSection = () => {
+    const [productDetails, setProductDetails] = useState([]);
+
+    useEffect(() => {
+        getProductListByCategory("women's clothing").then((res) => {
+            setProductDetails(res);
+        });
+    }, []);
+
+    const options = {
+        loop: true,
+        margin: 10,
+        nav: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 2
+            },
+            1000: {
+                items: 3
+            }
+        }
+    };
+
     return (
         <section className="section" id="women">
             <div className="container">
@@ -17,11 +45,10 @@ const WomenSection = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-12">
-                        <div className="women-item-carousel">
-                            <div className="owl-women-item owl-carousel">
-                                {/* Repeat the following block for each item */}
-                                <div className="item">
-                                    <div className="thumb">
+                    <OwlCarousel className="owl-theme" {...options}>
+                            {productDetails?.map((item, i) => (
+                                <div className="item" key={i}>
+                                    <div className="thumb2">
                                         <div className="hover-content">
                                             <ul>
                                                 <li><a href="single-product.html"><i className="fa fa-eye"></i></a></li>
@@ -29,11 +56,11 @@ const WomenSection = () => {
                                                 <li><a href="single-product.html"><i className="fa fa-shopping-cart"></i></a></li>
                                             </ul>
                                         </div>
-                                        <img src={Women1} alt="" />
+                                        <img src={item.image} alt={item.title} />
                                     </div>
                                     <div className="down-content">
-                                        <h4>New Green Jacket</h4>
-                                        <span>$75.00</span>
+                                        <h4>{item.title}</h4>
+                                        <span>${item.price}</span>
                                         <ul className="stars">
                                             <li><i className="fa fa-star"></i></li>
                                             <li><i className="fa fa-star"></i></li>
@@ -43,9 +70,8 @@ const WomenSection = () => {
                                         </ul>
                                     </div>
                                 </div>
-                                {/* Repeat block ends here */}
-                            </div>
-                        </div>
+                            ))}
+                        </OwlCarousel>
                     </div>
                 </div>
             </div>

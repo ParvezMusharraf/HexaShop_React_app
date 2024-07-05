@@ -31,6 +31,7 @@ const handleModel = (obj)=>{
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+      padding:'20px',
       width: "100%",
     }}
   >
@@ -41,19 +42,19 @@ const handleModel = (obj)=>{
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
-        justifyContent: "center",
+        justifyContent:"space-between",
         alignItems: "center",
       }}
     >
       {productDetails.map((p, index) => (
-        <div className="col-3 m-2 ">
+        <div className="auto m-2 ">
           <Card
             hoverable
             style={{ width: 250 }}
             cover={
               <img
                 style={{
-                  height: "300px",
+                  height: "280px",
                   width: "250px",
                 }}
                 alt={p.title}
