@@ -4,6 +4,7 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import { getProductListByCategory } from '../../Request/Requiests';
+import { Link } from 'react-router-dom';
 
 
 
@@ -38,7 +39,7 @@ const ElectronicSection = () => {
         <div className="row">
             <div className="col-lg-6">
                 <div className="section-heading">
-                    <h2>Latest Electronics</h2>
+                    <h2>Latest Electronics <span><Link to="/productsSection?category=electronics">Show More</Link></span></h2>
                     <span>Details to details is what makes Hexashop different from the other themes.</span>
                 </div>
             </div>
