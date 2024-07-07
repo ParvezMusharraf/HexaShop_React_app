@@ -4,8 +4,10 @@ import MenSection from '../Components/HomeMenSection/MenSection'
 import WomenSection from '../Components/WomenHomeSection/WomenSection'
 import KidsSection from '../Components/HomeKidsSection/KidsSection'
 import SubscribeSection from '../Components/SubscribeSection/Subscraibe'
+import JewelerySection from '../Components/HomeJwelerySection/JewelerySection'
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ElectronicSection from '../Components/HomeElectronicSection/ElectronicSection'
 
 const Home = () => {
   return (
@@ -13,9 +15,11 @@ const Home = () => {
     <ToastContainer
     position="top-center"/>
     <Banner/>
+    <ElectronicSection/>
     <MenSection/>
     <WomenSection/>
     <KidsSection/>
+    <JewelerySection/>
     <SubscribeSection/>
     </>
     
