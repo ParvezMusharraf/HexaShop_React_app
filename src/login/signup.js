@@ -21,7 +21,8 @@ const Signup = () => {
             setUser(res.user)
             localStorage.setItem("username",res.user.username)
             localStorage.setItem("email",res.user.email)
-            localStorage.setItem("userId",res.user._id)
+            localStorage.setItem("userId",res.user._id)  
+            localStorage.setItem("token", res.token); // Store the token
             console.log(res)
             setUserExist(true)
             navigate("/")
