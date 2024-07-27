@@ -46,7 +46,7 @@ const ProductSection = () => {
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
-          justifyContent: "center",
+          justifyContent: "space-around",
           alignItems: "center",
         }}
       >
