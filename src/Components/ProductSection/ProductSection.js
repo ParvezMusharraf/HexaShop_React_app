@@ -6,6 +6,8 @@ import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { useEffect } from "react";
 import { useState } from "react";
 import ProductDetailsModel from '../../Comman/ProductDetailModel'
+import "../loader.css"
+
 
 import { Card } from "antd";
 
