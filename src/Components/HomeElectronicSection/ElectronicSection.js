@@ -4,7 +4,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { getProductListByCategory } from "../../Request/Requiests";
 import { Link } from "react-router-dom";
-import "../loader.css"
+import "../loader.css";
 
 const ElectronicSection = () => {
   const [productDetails, setProductDetails] = useState([]);
@@ -76,11 +76,19 @@ const ElectronicSection = () => {
             <div className="row">
               <div className="col-lg-12">
                 {productDetails.length === 0 && !isLoading && (
-                  <p>No products found.</p>
+                  <div class="no-products">
+                    <h1>No Products Found</h1>
+                    <p>
+                      Sorry, but there are no products matching your search
+                      criteria.
+                    </p>
+                  </div>
                 )}
                 <OwlCarousel className="owl-theme" {...options}>
                   {productDetails.map((item) => (
-                    <div className="item" key={item.id}> {/* Assuming each item has a unique `id` */}
+                    <div className="item" key={item.id}>
+                      {" "}
+                      {/* Assuming each item has a unique `id` */}
                       <div className="thumb2">
                         <div className="hover-content">
                           <ul>

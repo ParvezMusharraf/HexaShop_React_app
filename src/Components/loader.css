@@ -9,3 +9,26 @@
     content:"Loading..."
   }
   @keyframes l1 {to{opacity: 0}}
+
+
+  .no-products {
+    text-align: center;
+    background-color: #1f1f1f; /* Slightly lighter dark background */
+    border: 1px solid #333; /* Border to add a bit of definition */
+    border-radius: 8px; /* Rounded corners for a softer look */
+    padding: 20px;
+    color: #e0e0e0; /* Light text color for contrast */
+    max-width: 600px;
+    width: 100%;
+}
+
+.no-products h1 {
+    font-size: 2rem;
+    color: #e0e0e0; /* Light text color for contrast */
+    margin-bottom: 10px;
+}
+
+.no-products p {
+    font-size: 1rem;
+    color: #e0e0e0; /* Light text color for contrast */
+}

@@ -3,35 +3,31 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { getProductListByCategory } from "../../Request/Requiests";
-import ProductDetailsModel from '../../Comman/ProductDetailModel'
-import "../loader.css"
+import { Link } from "react-router-dom";
+import "../loader.css";
 
 const ProductSection = () => {
-  const searchParams = new URLSearchParams(window.location.search);
-  const category = searchParams.get("category");
   const [productDetails, setProductDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [open, setOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await getProductListByCategory(category);
+        const res = await getProductListByCategory("men's clothing");
         if (res === "No Product Found") {
-          setIsLoading(false);
+          setProductDetails([]);
         } else {
           setProductDetails(res);
-          setIsLoading(false);
         }
       } catch (error) {
         console.error("Failed to fetch products", error);
+      } finally {
         setIsLoading(false);
       }
     };
 
     fetchProducts();
-  }, [category]);
+  }, []);
 
   const options = {
     loop: true,
@@ -50,39 +46,66 @@ const ProductSection = () => {
     },
   };
 
-  const handleModel = (product) => {
-    setSelectedProduct(product);
-    setOpen(true);
-  };
-
   return (
-    <section className="section" id="product-section">
-      {isLoading ? (
-        <div className="loader"></div>
-      ) : (
-        <>
-          <div className="container">
+    <section className="section" id="women">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-6">
             <div className="section-heading">
               <h2>
-                Product List{" "}
-                <span>Explore More</span>
+                Men Latest{" "}
+                <span>
+                  <Link to="/productsSection?category=men's clothing">
+                    Show More
+                  </Link>
+                </span>
               </h2>
+              <span>
+                Details to details is what makes Hexashop different from the
+                other themes.
+              </span>
             </div>
           </div>
-          <div className="container">
-            <OwlCarousel className="owl-theme" {...options}>
-              {productDetails.length === 0 ? (
-                <p>No products found.</p>
-              ) : (
-                productDetails.map((item) => (
+        </div>
+      </div>
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12">
+            {isLoading ? (
+              <div className="loader-container">
+                <div className="spinner"></div>
+              </div>
+            ) : productDetails.length === 0 ? (
+              <div class="no-products">
+                <h1>No Products Found</h1>
+                <p>
+                  Sorry, but there are no products matching your search
+                  criteria.
+                </p>
+              </div>
+            ) : (
+              <OwlCarousel className="owl-theme" {...options}>
+                {productDetails.map((item) => (
                   <div className="item" key={item.id}>
+                    {" "}
+                    {/* Assuming each item has a unique `id` */}
                     <div className="thumb2">
                       <div className="hover-content">
                         <ul>
                           <li>
-                            <button onClick={() => handleModel(item)}>
+                            <a href="single-product.html">
                               <i className="fa fa-eye"></i>
-                            </button>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="single-product.html">
+                              <i className="fa fa-star"></i>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="single-product.html">
+                              <i className="fa fa-shopping-cart"></i>
+                            </a>
                           </li>
                         </ul>
                       </div>
@@ -91,20 +114,21 @@ const ProductSection = () => {
                     <div className="down-content">
                       <h4>{item.title}</h4>
                       <span>${item.price}</span>
+                      <ul className="stars">
+                        {[...Array(5)].map((_, i) => (
+                          <li key={i}>
+                            <i className="fa fa-star"></i>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-                ))
-              )}
-            </OwlCarousel>
+                ))}
+              </OwlCarousel>
+            )}
           </div>
-          {open && 
-            <ProductDetailsModel 
-              setOpen={setOpen}
-              obj={selectedProduct}
-            />
-          }
-        </>
-      )}
+        </div>
+      </div>
     </section>
   );
 };
