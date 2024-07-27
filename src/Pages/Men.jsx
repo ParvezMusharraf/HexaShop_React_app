@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { getProductListByCategory } from '../Request/Requiests';
+import React, { useState, useEffect } from "react";
+import { getProductListByCategory } from "../Request/Requiests";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { Card } from "antd";
-import ProductDetailsModel from '../Comman/ProductDetailModel';
+import ProductDetailsModel from "../Comman/ProductDetailModel";
 
 const { Meta } = Card;
 
@@ -41,8 +41,26 @@ const Men = () => {
   };
 
   return (
-    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: '20px', width: "100%" }}>
-      <div className="row" style={{ marginTop: "200px", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "20px",
+        width: "100%",
+      }}
+    >
+      <div
+        className="row"
+        style={{
+          marginTop: "10%",
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         {isLoading ? (
           <div>Loading...</div>
         ) : error ? (
@@ -51,11 +69,19 @@ const Men = () => {
           <div>No products found.</div>
         ) : (
           productDetails.map((p) => (
-            <div className="auto m-2" key={p.id}> {/* Added unique key */}
+            <div className="auto m-2" key={p.id}>
+              {" "}
+              {/* Added unique key */}
               <Card
                 hoverable
                 style={{ width: 250 }}
-                cover={<img style={{ height: "280px", width: "250px" }} alt={p.title} src={p.image} />}
+                cover={
+                  <img
+                    style={{ height: "280px", width: "250px" }}
+                    alt={p.title}
+                    src={p.image}
+                  />
+                }
               >
                 <Meta
                   title={p.title}
@@ -63,7 +89,11 @@ const Men = () => {
                 />
                 <div className="d-flex justify-content-between align-items-center my-3">
                   <b>Details:</b>
-                  <button type="button" className="btn" onClick={() => handleModalOpen(p)}>
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => handleModalOpen(p)}
+                  >
                     <IoIosArrowDropdownCircle />
                   </button>
                 </div>
@@ -81,10 +111,7 @@ const Men = () => {
         )}
       </div>
       {open && selectedProduct && (
-        <ProductDetailsModel
-          setOpen={setOpen}
-          obj={selectedProduct}
-        />
+        <ProductDetailsModel setOpen={setOpen} obj={selectedProduct} />
       )}
     </div>
   );

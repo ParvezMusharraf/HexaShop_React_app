@@ -38,7 +38,7 @@ const Women = () => {
 
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", padding: "20px" }}>
-      <div className="row" style={{ marginTop: "200px", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center" }}>
+      <div className="row" style={{ marginTop: "10%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center" }}>
         {isLoading ? (
           <div>Loading...</div>
         ) : productDetails.length === 0 ? (

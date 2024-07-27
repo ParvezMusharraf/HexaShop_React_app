@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { getProductListByCategory } from '../Request/Requiests';
+import React, { useState, useEffect } from "react";
+import { getProductListByCategory } from "../Request/Requiests";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { Card } from "antd";
-import ProductDetailsModel from '../Comman/ProductDetailModel';
+import ProductDetailsModel from "../Comman/ProductDetailModel";
 
 const { Meta } = Card;
 
@@ -41,8 +41,26 @@ const Kids = () => {
   };
 
   return (
-    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", padding: "20px" }}>
-      <div className="row" style={{ marginTop: "200px", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        padding: "20px",
+      }}
+    >
+      <div
+        className="row"
+        style={{
+          marginTop: "10%",
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         {isLoading ? (
           <div>Loading...</div>
         ) : error ? (
@@ -69,7 +87,11 @@ const Kids = () => {
                 />
                 <div className="d-flex justify-content-between align-items-center my-3">
                   <b>Details:</b>
-                  <button type="button" className="btn" onClick={() => handleModalOpen(p)}>
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => handleModalOpen(p)}
+                  >
                     <IoIosArrowDropdownCircle />
                   </button>
                 </div>
@@ -87,10 +109,7 @@ const Kids = () => {
         )}
       </div>
       {open && selectedProduct && (
-        <ProductDetailsModel
-          setOpen={setOpen}
-          obj={selectedProduct}
-        />
+        <ProductDetailsModel setOpen={setOpen} obj={selectedProduct} />
       )}
     </div>
   );
