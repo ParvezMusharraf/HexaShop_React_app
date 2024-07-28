@@ -2,17 +2,30 @@ import React from "react";
 import { useCart } from 'react-use-cart';
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { AddToCart } from "../Request/Requiests";
 
 const ProductDetailModel = ({ setOpen, obj }) => {
-  const { addItem } = useCart();
 
   const handleCancel = () => {
     setOpen(false);
   };
 
   const addToCart = (product) => {
-    addItem({ ...product, id: product._id });
-    toast.success("Item added successfully");
+    const data = {
+      productId : product,
+      userid : localStorage.getItem("userId")
+    }
+    const saveAddToCart = async() =>{
+      console.log(data)
+      const res = await AddToCart(data)
+      if(res.message === "Product added to cart successfully" ){
+        alert(res.message)
+      }
+      else(
+        alert(res.message)
+      )
+    }
+    saveAddToCart()
   };
 
   return (
@@ -41,7 +54,7 @@ const ProductDetailModel = ({ setOpen, obj }) => {
                 <button type="button" className="btn btn-primary p-1 m-1">
                   Buy Now
                 </button>
-                <button type="button" onClick={() => addToCart(obj)} className="btn btn-secondary p-1 m-2">
+                <button type="button" onClick={() => addToCart(obj._id)} className="btn btn-secondary p-1 m-2">
                   Add to Cart
                 </button>
               </div>

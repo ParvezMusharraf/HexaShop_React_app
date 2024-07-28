@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { useCart } from "react-use-cart";
+// import { useCart } from "react-use-cart";
 
 const Explore = () => {
-  const { isEmpty, totalUniqueItems, items, updateItemQuantity, removeItem } =
-    useCart();
-    const grandTotal = items.reduce((total, item) => total + item.price, 0);
+  // const { isEmpty, totalUniqueItems, items, updateItemQuantity, removeItem } =
+  //   useCart();
+  //   const grandTotal = items.reduce((total, item) => total + item.price, 0);
   const [freeShipping, setFreeShipping] = useState(false);
 
-  useEffect(() => {
-    if (grandTotal > 1000) {
-      setFreeShipping(true);
-    } else {
-      setFreeShipping(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (grandTotal > 1000) {
+  //     setFreeShipping(true);
+  //   } else {
+  //     setFreeShipping(false);
+  //   }
+  // }, []);
 
-  if (isEmpty)
-    return (
-      <p
-        style={{
-          marginTop: "100px",
-        }}
-      >
-        Your cart is empty
-      </p>
-    );
+  // if (isEmpty)
+  //   return (
+  //     <p
+  //       style={{
+  //         marginTop: "100px",
+  //       }}
+  //     >
+  //       Your cart is empty
+  //     </p>
+  //   );
 
 
   return (
@@ -33,7 +33,9 @@ const Explore = () => {
         marginTop: "150px",
       }}
     >
-      <div className="grandTotol d-flex justify-content-center align-items-center m-3">
+
+      <h3>page is in under construction</h3>
+      {/* <div className="grandTotol d-flex justify-content-center align-items-center m-3">
         <h6 className="text-success"> Price Upto 1000 meke a free dilavery</h6>
       </div>
       {items.map((p) => (
@@ -51,7 +53,6 @@ const Explore = () => {
             <div className="left col-6 badge">
               <img
                 src={p.image}
-                // src="https://www.beyoung.in/api/cache/catalog/products/new_checked_shirt_image_9_12_2022/navy_blue_cotton_solid_shirts_for_men_base_19_10_2023_700x933.jpg"
                 alt=""
                 style={{ width: "100%", height: "auto" }}
               />
@@ -89,21 +90,6 @@ const Explore = () => {
                 <p>{p.description}</p>
               </div>
               <div className="counterContainer d-flex justify-content-between align-items-center row">
-                {/* <div className="right col-auto">
-              <button
-                className="btn btn-outline-dark"
-                // onClick={decrementCounter}
-              >
-                -
-              </button>
-              <span>Counter</span>
-              <button
-                className="btn btn-outline-dark"  
-                // onClick={incrementCounter}
-              >
-                +
-              </button>
-              </div> */}
                 <div className="left col-auto">
                   <button
                     className="btn btn-outline-dark m-1"
@@ -138,7 +124,7 @@ const Explore = () => {
              </div>
              </div>
         )}
-      </div>
+      </div> */}
     </section>
   );
 };
