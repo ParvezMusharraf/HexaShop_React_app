@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getProductListByCategory } from "../Request/Requiests";
-import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { HiArrowCircleRight } from "react-icons/hi";
 import { Card } from "antd";
 import ProductDetailsModel from "../Comman/ProductDetailModel";
 
@@ -87,23 +87,30 @@ const Men = () => {
                   title={p.title}
                   description={showDetails ? p.description : ""}
                 />
+                <div className="d-flex justify-content-between total font-weight-bold mt-4">
+                  <span>Total:</span>
+                  <span>${p.price}</span>
+                </div>
+                {/* <div className="d-flex justify-content-between">
+                  <span>Category:</span>
+                  <b>{p.category}</b>
+                </div> */}
                 <div className="d-flex justify-content-between align-items-center my-3">
                   <b>Details:</b>
                   <button
                     type="button"
-                    className="btn"
+                    // className="btn"
+                    style={{
+                      borderRadius: 20,
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      background: "none",
+                    }}
                     onClick={() => handleModalOpen(p)}
                   >
-                    <IoIosArrowDropdownCircle />
+                    <HiArrowCircleRight />
                   </button>
-                </div>
-                <div className="d-flex justify-content-between">
-                  <div>Category:</div>
-                  <b>{p.category}</b>
-                </div>
-                <div className="d-flex justify-content-between total font-weight-bold mt-4">
-                  <span>Total</span>
-                  <span>${p.price}</span>
                 </div>
               </Card>
             </div>
