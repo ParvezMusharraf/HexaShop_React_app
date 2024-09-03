@@ -48,5 +48,21 @@
   .product-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
+  }
+  .btn {
+    margin-top: 10px;
+    color: black;
+    border: none;
+    color: white;
+    background-color: #555;
+  }
+  .btn:hover{
+    background-color: #333;
+  }
+  .btn-success {
+    margin-left: 10px;
+  }
+  .desc{
+    color: gray;
   }

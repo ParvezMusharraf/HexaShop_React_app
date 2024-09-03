@@ -89,12 +89,12 @@ const ProductSection = () => {
                   <div className="item" key={item.id}>
                     {" "}
                     {/* Assuming each item has a unique `id` */}
-                    <div className="thumb2">
+                    <div className="thumb">
                       <div className="hover-content">
                         <ul>
                           <li>
                             <a href="single-product.html">
-                              <i className="fa fa-eye"></i>
+                            <i class="fa-solid fa-eye"></i>
                             </a>
                           </li>
                           <li>
@@ -109,7 +109,7 @@ const ProductSection = () => {
                           </li>
                         </ul>
                       </div>
-                      <img src={item.image} alt={item.title} />
+                      <img src={item.image} alt={item.title} height={'400px'} width={'100%'}/>
                     </div>
                     <div className="down-content">
                       <h4>{item.title}</h4>
@@ -119,7 +119,7 @@ const ProductSection = () => {
                           <li key={i}>
                             <i className="fa fa-star"></i>
                           </li>
-                        ))}
+                        ))}  
                       </ul>
                     </div>
                   </div>

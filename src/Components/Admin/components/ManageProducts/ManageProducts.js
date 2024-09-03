@@ -110,12 +110,13 @@ const ManageProducts = () => {
                 {filteredProducts?.map(product => (
                   <Card
                     key={product._id}
-                    title={product.title}
+                    // title={product.title}
                     style={{ width: 300, margin: '10px' }}
-                    cover={<img alt={product.title} src={product.image} />}
+                    cover={<img alt={product.title} src={product.image} height={'400px'} />}
                   >
-                    <p>{product.description}</p>
-                    <p>Price: ${product.price}</p>
+                    <h2>{product.title}</h2>
+                    <h5>Price: ${product.price}</h5>
+                    <p className='desc'>{product.description}</p>
                     <button className='btn btn-danger' onClick={()=>handleDelete(product._id)}>Delete</button>
                     <button className='btn btn-success'>Update</button>
                   </Card>
