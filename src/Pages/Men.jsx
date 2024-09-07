@@ -10,7 +10,7 @@ const Men = () => {
   const [productDetails, setProductDetails] = useState([]);
   const [showDetails, setShowDetails] = useState(false); // Fixed typo
   const [open, setOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null); // Renamed for clarity
+  const [selectedProduct, setSelectedProduct] = useState(null); 
   const [isLoading, setIsLoading] = useState(true); // Added loading state
   const [error, setError] = useState(null); // Added error state
 

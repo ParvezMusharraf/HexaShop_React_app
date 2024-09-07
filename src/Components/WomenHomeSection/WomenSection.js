@@ -2,13 +2,21 @@ import React, { useState, useEffect } from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import { getProductListByCategory } from "../../Request/Requiests";
+import { getProductListByCategory,AddToCart } from "../../Request/Requiests";
 import { Link } from "react-router-dom";
 import "../loader.css";
+import ProductDetailsModel from '../../Comman/ProductDetailModel'
 
 const WomenSection = () => {
   const [productDetails, setProductDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null); 
+
+  const handleModalOpen = (product) => {
+    setSelectedProduct(product);
+    setOpen(true);
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -28,6 +36,24 @@ const WomenSection = () => {
 
     fetchProducts();
   }, []);
+
+  const handeAddToCart =(product)=>{
+    const data = {
+      productId : product,
+      userid : localStorage.getItem("userId")
+    }
+    const saveAddToCart = async() =>{
+      console.log(data)
+      const res = await AddToCart(data)
+      if(res.message === "Product added to cart successfully" ){
+        alert(res.message)
+      }
+      else(
+        alert(res.message)
+      )
+    }
+    saveAddToCart()
+  }
 
   const options = {
     loop: true,
@@ -91,9 +117,9 @@ const WomenSection = () => {
                     {/* Assuming each item has a unique `id` */}
                     <div className="thumb">
                       <div className="hover-content">
-                        <ul>
+                      <ul>
                           <li>
-                            <a href="single-product.html">
+                            <a onClick={() => handleModalOpen(item)}                            >
                             <i class="fa-solid fa-eye"></i>
                             </a>
                           </li>
@@ -103,7 +129,7 @@ const WomenSection = () => {
                             </a>
                           </li>
                           <li>
-                            <a href="single-product.html">
+                            <a onClick={() =>handeAddToCart(item._id)}>
                               <i className="fa fa-shopping-cart"></i>
                             </a>
                           </li>
@@ -129,6 +155,9 @@ const WomenSection = () => {
           </div>
         </div>
       </div>
+      {open && selectedProduct && (
+        <ProductDetailsModel setOpen={setOpen} obj={selectedProduct} />
+      )}
     </section>
   );
 };
