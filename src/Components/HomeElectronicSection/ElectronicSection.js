@@ -47,16 +47,12 @@ const ElectronicSection = () => {
   };
 
   return (
-    <section className="section" id="Electronics">
-      {isLoading ? (
-        <div className="loader"></div> // Adjust to fit your actual loader class or style
-      ) : (
-        <>
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-6">
-                <div className="section-heading">
-                  <h2>
+    <section className="section" id="women">
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-6">
+          <div className="section-heading">
+          <h2>
                     Latest Electronics{" "}
                     <span>
                       <Link to="/productsSection?category=electronics">
@@ -64,73 +60,76 @@ const ElectronicSection = () => {
                       </Link>
                     </span>
                   </h2>
-                  <span>
-                    Details to details is what makes Hexashop different from the
-                    other themes.
-                  </span>
-                </div>
-              </div>
-            </div>
+            <span>
+              Details to details is what makes Hexashop different from the
+              other themes.
+            </span>
           </div>
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                {productDetails.length === 0 && !isLoading && (
-                  <div class="no-products">
-                    <h1>No Products Found</h1>
-                    <p>
-                      Sorry, but there are no products matching your search
-                      criteria.
-                    </p>
-                  </div>
-                )}
-                <OwlCarousel className="owl-theme" {...options}>
-                  {productDetails.map((item) => (
-                    <div className="item" key={item.id}>
-                      {" "}
-                      {/* Assuming each item has a unique `id` */}
-                      <div className="thumb2">
-                        <div className="hover-content">
-                          <ul>
-                            <li>
-                              <a href="single-product.html">
-                                <i className="fa fa-eye"></i>
-                              </a>
-                            </li>
-                            <li>
-                              <a href="single-product.html">
-                                <i className="fa fa-star"></i>
-                              </a>
-                            </li>
-                            <li>
-                              <a href="single-product.html">
-                                <i className="fa fa-shopping-cart"></i>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                        <img src={item.image} alt={item.title} />
-                      </div>
-                      <div className="down-content">
-                        <h4>{item.title}</h4>
-                        <span>${item.price}</span>
-                        <ul className="stars">
-                          {[...Array(5)].map((_, i) => (
-                            <li key={i}>
-                              <i className="fa fa-star"></i>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+        </div>
+      </div>
+    </div>
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-12">
+          {isLoading ? (
+            <div className="loader-container">
+              <div className="spinner"></div>
+            </div>
+          ) : productDetails.length === 0 ? (
+            <div class="no-products">
+              <h1>No Products Found</h1>
+              <p>
+                Sorry, but there are no products matching your search
+                criteria.
+              </p>
+            </div>
+          ) : (
+            <OwlCarousel className="owl-theme" {...options}>
+              {productDetails.map((item) => (
+                <div className="item" key={item.id}>
+                  {" "}
+                  {/* Assuming each item has a unique `id` */}
+                  <div className="thumb">
+                    <div className="hover-content">
+                      <ul>
+                        <li>
+                          <a href="single-product.html">
+                          <i class="fa-solid fa-eye"></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="single-product.html">
+                            <i className="fa fa-star"></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="single-product.html">
+                            <i className="fa fa-shopping-cart"></i>
+                          </a>
+                        </li>
+                      </ul>
                     </div>
-                  ))}
-                </OwlCarousel>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
-    </section>
+                    <img src={item.image} alt={item.title} height={'400px'} width={'100%'}/>
+                  </div>
+                  <div className="down-content">
+                    <h4>{item.title}</h4>
+                    <span>${item.price}</span>
+                    <ul className="stars">
+                      {[...Array(5)].map((_, i) => (
+                        <li key={i}>
+                          <i className="fa fa-star"></i>
+                        </li>
+                      ))}  
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </OwlCarousel>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
   );
 };
 

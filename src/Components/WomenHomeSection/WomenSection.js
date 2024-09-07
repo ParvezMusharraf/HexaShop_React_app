@@ -52,7 +52,7 @@ const WomenSection = () => {
         <div className="row">
           <div className="col-lg-6">
             <div className="section-heading">
-              <h2>
+            <h2>
                 Women's Latest{" "}
                 <span>
                   <Link to="/productsSection?category=women's clothing">
@@ -89,12 +89,12 @@ const WomenSection = () => {
                   <div className="item" key={item.id}>
                     {" "}
                     {/* Assuming each item has a unique `id` */}
-                    <div className="thumb2">
+                    <div className="thumb">
                       <div className="hover-content">
                         <ul>
                           <li>
                             <a href="single-product.html">
-                              <i className="fa fa-eye"></i>
+                            <i class="fa-solid fa-eye"></i>
                             </a>
                           </li>
                           <li>
@@ -109,7 +109,7 @@ const WomenSection = () => {
                           </li>
                         </ul>
                       </div>
-                      <img src={item.image} alt={item.title} />
+                      <img src={item.image} alt={item.title} height={'400px'} width={'100%'}/>
                     </div>
                     <div className="down-content">
                       <h4>{item.title}</h4>
@@ -119,7 +119,7 @@ const WomenSection = () => {
                           <li key={i}>
                             <i className="fa fa-star"></i>
                           </li>
-                        ))}
+                        ))}  
                       </ul>
                     </div>
                   </div>
