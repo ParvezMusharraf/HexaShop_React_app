@@ -83,6 +83,14 @@ export const deleteProductById = async(productId)=>{
         console.log(error)
     }
 }
+export const getAddToCart = async(productId)=>{
+    try {
+        const res = await axios.get(`${MAIN_LocalURL}/getAddToCart?userid=${productId}`);
+        return res?.data
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 // Post Requiest for Product 
@@ -108,7 +116,7 @@ try {
 
 export const loginUser = async(data)=>{
     try{
-        const res = await axios.post(`${MAIN_LocalURL}/Auth/Login`,data)
+        const res = await axios.post(`${MAIN_LocalURL}/signin`,data)
         return res?.data
     }
     catch(error){
@@ -117,11 +125,13 @@ export const loginUser = async(data)=>{
 }
 export const SignUpUser = async(data)=>{
     try{
-        const res = await axios.post(`${MAIN_LocalURL}/Auth/User`,data)
+        const res = await axios.post(`${MAIN_LocalURL}/signup`,data)
         return res?.data
     }
     catch(error){
         console.log(error)
     }
 }
+
+
 

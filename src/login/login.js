@@ -23,7 +23,7 @@ const Login = () => {
                 console.log(res, "userinfo");
                 setUser(res);
                 setUserExist(true);
-                localStorage.setItem("userId", res._id);
+                localStorage.setItem("userId", res.userId);
                 localStorage.setItem("userName", res.username);
                 localStorage.setItem("token", res.token); // Store the token
                 alert(res.message); // Display message from the response

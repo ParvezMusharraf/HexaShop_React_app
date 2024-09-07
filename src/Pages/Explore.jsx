@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from "react";
-// import { useCart } from "react-use-cart";
+import { getAddToCart } from "../Request/Requiests";
 
 const Explore = () => {
-  // const { isEmpty, totalUniqueItems, items, updateItemQuantity, removeItem } =
-  //   useCart();
-  //   const grandTotal = items.reduce((total, item) => total + item.price, 0);
+
   const [freeShipping, setFreeShipping] = useState(false);
+  const [CardsDetails,setCardDetails] = useState([])
 
-  // useEffect(() => {
-  //   if (grandTotal > 1000) {
-  //     setFreeShipping(true);
-  //   } else {
-  //     setFreeShipping(false);
-  //   }
-  // }, []);
+  const fetchData = async() =>{
+    try {
+      const userid = localStorage.getItem("userId")
+    const res = await getAddToCart(userid)
+    console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+    
+  }
 
-  // if (isEmpty)
-  //   return (
-  //     <p
-  //       style={{
-  //         marginTop: "100px",
-  //       }}
-  //     >
-  //       Your cart is empty
-  //     </p>
-  //   );
+
+  useEffect(() => {
+    fetchData()
+  }, []);
 
 
   return (
