@@ -1,27 +1,46 @@
 import React, { useEffect, useState } from "react";
-import { getAddToCart } from "../Request/Requiests";
+import { getAddToCart, removeCart } from "../Request/Requiests";
 
 const Explore = () => {
-
   const [freeShipping, setFreeShipping] = useState(false);
-  const [CardsDetails,setCardDetails] = useState([])
+  const [CardsDetails, setCardDetails] = useState([]);
+  const [grandtTotal,setGrandTotal] = useState(0)
 
-  const fetchData = async() =>{
+  const fetchData = async () => {
     try {
-      const userid = localStorage.getItem("userId")
-    const res = await getAddToCart(userid)
-    console.log(res)
+      const userid = localStorage.getItem("userId");
+      const res = await getAddToCart(userid);
+      setCardDetails(res)
+      const totalPrice = res.reduce((total, product) => total + product.price, 0);
+      if(totalPrice > 1000){
+        setFreeShipping(true)
+      }
+      setGrandTotal(totalPrice)
+      console.log(res);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-    
-  }
+  };
 
+
+  const handleremoveCart = async (ProductId2) => {
+    try {
+      const userid = localStorage.getItem("userId");
+      console.log(ProductId2,userid,"removeCart") 
+      const data = {
+        productId:ProductId2,
+        userid:userid
+      }
+      const res = await removeCart(data);
+      fetchData()
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    fetchData()
+    fetchData();
   }, []);
-
 
   return (
     <section
@@ -29,12 +48,10 @@ const Explore = () => {
         marginTop: "150px",
       }}
     >
-
-      <h3>page is in under construction</h3>
-      {/* <div className="grandTotol d-flex justify-content-center align-items-center m-3">
+      <div className="grandTotol d-flex justify-content-center align-items-center m-3">
         <h6 className="text-success"> Price Upto 1000 meke a free dilavery</h6>
       </div>
-      {items.map((p) => (
+      {CardsDetails.map((p) => (
         <div
           key={p.id}
           className="main-container d-flex justify-content-center"
@@ -89,7 +106,7 @@ const Explore = () => {
                 <div className="left col-auto">
                   <button
                     className="btn btn-outline-dark m-1"
-                    onClick={() => removeItem(p.id)}
+                    onClick={() => handleremoveCart(p._id)}
                   >
                     {" "}
                     Delete Item
@@ -106,7 +123,7 @@ const Explore = () => {
              <h3> You Are eligible For <span className="text-primary">Free Shipping</span> </h3>
              <div className="total_amount d-flex row justify-content-center align-items-center m-4"> 
              <h5 className="m-1">Total Amount :</h5>
-             <span className="m-1"><strong> {grandTotal.toFixed(2)}$</strong></span>
+             <span className="m-1"><strong> {grandtTotal}$</strong></span>
              <button className="btn btn-dark" onClick={()=> alert("Payment page is underconstruction")} >Proceed to pay</button>
              </div>
              </div>
@@ -115,12 +132,12 @@ const Explore = () => {
             <h4>You Have to pay some <span className="text-danger">shipping Charges On delivery</span></h4>
             <div className="total_amount d-flex row justify-content-center align-items-center m-4"> 
              <h5 className="m-1">Total Amount :</h5>
-             <span className="m-1"><strong> {grandTotal.toFixed(2)}$</strong></span>
+             <span className="m-1"><strong> {grandtTotal}$</strong></span>
              <button className="btn btn-dark" onClick={()=> alert("Payment page is underconstruction")}>Proceed to pay</button>
              </div>
              </div>
         )}
-      </div> */}
+      </div>
     </section>
   );
 };
