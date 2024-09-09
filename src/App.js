@@ -1,55 +1,52 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {  Route, Routes } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import Header from './Components/Header';
-import Home from './Pages/Home';
-import Men from './Pages/Men';
-import Women from './Pages/Women';
-import Kids from "./Pages/Kids"
-import About from './Pages/About';
-import Products from './Pages/Product'
-import Contact from './Pages/Contact'
-import FeaturesPage1 from './Pages/Feature_1'
-import FeaturesPage2 from './Pages/Feature_2'
-import FeaturesPage3 from './Pages/Feacture_3'
-import Explore from './Pages/Explore';
 import Footer from './Components/Footer/Footer';
-import ProductSection from './Components/ProductSection/ProductSection'
-import PostProduct from './Components/Admin/components/PostForm/PostProduct';
-import AdminHome from './Components/Admin/Landingpage/AdminHome'
-import ManageProducts from './Components/Admin/components/ManageProducts/ManageProducts';
-import Login from './login/login';
-import Signup from './login/signup';
 import InitializeApp from './login/InitializeApp';
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+
+// Lazy loading for all other components
+const Home = lazy(() => import('./Pages/Home'));
+const Men = lazy(() => import('./Pages/Men'));
+const Women = lazy(() => import('./Pages/Women'));
+const Kids = lazy(() => import('./Pages/Kids'));
+const About = lazy(() => import('./Pages/About'));
+const Products = lazy(() => import('./Pages/Product'));
+const Contact = lazy(() => import('./Pages/Contact'));
+const FeaturesPage1 = lazy(() => import('./Pages/Feature_1'));
+const Explore = lazy(() => import('./Pages/Explore'));
+const ProductSection = lazy(() => import('./Components/ProductSection/ProductSection'));
+const PostProduct = lazy(() => import('./Components/Admin/components/PostForm/PostProduct'));
+const AdminHome = lazy(() => import('./Components/Admin/Landingpage/AdminHome'));
+const ManageProducts = lazy(() => import('./Components/Admin/components/ManageProducts/ManageProducts'));
+const Login = lazy(() => import('./login/login'));
+const Signup = lazy(() => import('./login/signup'));
 
 function App() {
- 
   return (
     <div className="App">
-      {/* <Router> */}
       <InitializeApp />
-        <Header />
+      <Header />
+      <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Admin" element={<AdminHome/>}/>
-          <Route path="/admin/manage-products" element={<ManageProducts/>}/>
-          <Route path="/productsSection" element={<ProductSection/>}/>
+          <Route path="/Admin" element={<AdminHome />} />
+          <Route path="/admin/manage-products" element={<ManageProducts />} />
+          <Route path="/productsSection" element={<ProductSection />} />
           <Route path="/men" element={<Men />} />
           <Route path="/women" element={<Women />} />
           <Route path="/kids" element={<Kids />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
-          {/* <Route path="/single-product" element={<PostProduct />} /> */}
           <Route path="/admin/post-products" element={<PostProduct />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/features/page-1" element={<FeaturesPage1 />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login/>} />
+          <Route path="/login" element={<Login />} />
           <Route path="/addToCart" element={<Explore />} />
         </Routes>
-      {/* </Router> */}
-      <Footer/>
+      </Suspense>
+      <Footer />
     </div>
   );
 }
