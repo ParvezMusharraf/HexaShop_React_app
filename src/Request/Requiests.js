@@ -114,7 +114,9 @@ export const AddToCart = async (data) => {
 };
 export const removeCart = async (data) => {
   try {
-    const res = await axios.delete(`${MAIN_LocalURL}/removeCart/item?productId=${data.productId}&userid=${data.userid}`);
+    const res = await axios.delete(
+      `${MAIN_LocalURL}/removeCart/item?productId=${data.productId}&userid=${data.userid}`
+    );
     return res?.data;
   } catch (error) {
     console.log(error);
@@ -132,6 +134,14 @@ export const loginUser = async (data) => {
 export const SignUpUser = async (data) => {
   try {
     const res = await axios.post(`${MAIN_LocalURL}/signup`, data);
+    return res?.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getListingProduct = async (data) => {
+  try {
+    const res = await axios.get(`${MAIN_LocalURL}/productdetailsbyId?productId=${data}`);
     return res?.data;
   } catch (error) {
     console.log(error);

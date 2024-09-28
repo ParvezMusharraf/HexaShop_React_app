@@ -6,6 +6,8 @@ import { useCart } from 'react-use-cart';
 import ShoppingCart from '../Comman/ShopingCart';
 import { UserAuth } from '../context/UserContaxt';
 // import { useNavigate } from 'react-router-dom';
+import SearchFeild from "../Components/SearchBar/SearchFeild";
+
 
 // Create Header component
 const Header = () => {
@@ -41,6 +43,7 @@ const Header = () => {
 
                             {/* Menu */}
                             <ul className="nav">
+                                <li><SearchFeild/></li>
                                 <li><Link to="/" className="scroll-to-section" activeClassName="active">Home</Link></li>
                                 <li><Link to="/men" className="scroll-to-section">Men's</Link></li>
                                 <li><Link to="/women" className="scroll-to-section">Women's</Link></li>

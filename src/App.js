@@ -21,6 +21,7 @@ const AdminHome = lazy(() => import('./Components/Admin/Landingpage/AdminHome'))
 const ManageProducts = lazy(() => import('./Components/Admin/components/ManageProducts/ManageProducts'));
 const Login = lazy(() => import('./login/login'));
 const Signup = lazy(() => import('./login/signup'));
+const ListingPage = lazy(()=> import("./Pages/ProductListing"))
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/addToCart" element={<Explore />} />
+          <Route path="/listingpage" element={<ListingPage />} />
         </Routes>
       </Suspense>
       <Footer />
