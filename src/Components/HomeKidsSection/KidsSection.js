@@ -5,7 +5,9 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import { getProductListByCategory,AddToCart } from "../../Request/Requiests";
 import { Link } from "react-router-dom";
 import "../loader.css";
-import ProductDetailsModel from '../../Comman/ProductDetailModel'
+import ProductDetailsModel from '../../Comman/ProductDetailModel';
+import truncateString from "../../utils/ShortFunction";
+
 
 
 const KidsSection = () => {
@@ -139,7 +141,7 @@ const KidsSection = () => {
                     <img src={item.image} alt={item.title} height={'400px'} width={'100%'}/>
                   </div>
                   <div className="down-content">
-                    <h4>{item.title}</h4>
+                    <h4>{truncateString(item.title, 20)}</h4>
                     <span>${item.price}</span>
                     <ul className="stars">
                       {[...Array(5)].map((_, i) => (
