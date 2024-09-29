@@ -3,6 +3,8 @@ import { useState } from "react";
 import { SignUpUser } from "../Request/Requiests";
 import { UserAuth } from "../context/UserContaxt";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const {
@@ -17,10 +19,12 @@ const Signup = () => {
   const [user, setUser] = useState();
   const navigate = useNavigate();
 
+  const notifyDenger = (msg) => toast.warn(msg);
+
   const handleSubmit = async () => {
     try {
       if (!email || !password || !userName) {
-        alert("all feilds are mandetory");
+        notifyDenger("all feilds are mandetory")
         return;
       }
       const res = await SignUpUser({ email, password, username: userName });
@@ -29,8 +33,9 @@ const Signup = () => {
       localStorage.setItem("email", res.user.email);
       localStorage.setItem("userId", res.user._id);
       localStorage.setItem("token", res.token); // Store the token
-      console.log(res);
       setUserExist(true);
+      const notify = () => toast.success("Signup successfully");
+      notify()
       navigate("/");
     } catch (error) {
       console.log(error);
