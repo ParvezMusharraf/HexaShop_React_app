@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import "../loader.css";
 import ProductDetailsModel from "../../Comman/ProductDetailModel";
 import truncateString from "../../utils/ShortFunction";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ProductSection = () => {
   const [productDetails, setProductDetails] = useState([]);
@@ -38,6 +40,9 @@ const ProductSection = () => {
     fetchProducts();
   }, []);
 
+  const notify = (msg) => toast.success(msg);
+  const notifyerror = (msg) => toast.warn(msg);
+
   const handeAddToCart = (product) => {
     const data = {
       productId: product,
@@ -47,8 +52,8 @@ const ProductSection = () => {
       console.log(data);
       const res = await AddToCart(data);
       if (res.message === "Product added to cart successfully") {
-        alert(res.message);
-      } else alert(res.message);
+        notify(res.message);
+      } else notifyerror(res.error);
     };
     saveAddToCart();
   };
@@ -115,17 +120,17 @@ const ProductSection = () => {
                     <div className="thumb">
                       <div className="hover-content">
                         <ul>
-                          <li>
+                          <li className="curser_pointer">
                             <a onClick={() => handleModalOpen(item)}>
                               <i class="fa-solid fa-eye"></i>
                             </a>
                           </li>
-                          <li>
+                          <li className="curser_pointer">
                             <a href="single-product.html">
                               <i className="fa fa-star"></i>
                             </a>
                           </li>
-                          <li>
+                          <li className="curser_pointer">
                             <a onClick={() => handeAddToCart(item._id)}>
                               <i className="fa fa-shopping-cart"></i>
                             </a>
@@ -140,7 +145,13 @@ const ProductSection = () => {
                       />
                     </div>
                     <div className="down-content">
-                      <h4> {truncateString(item.title, 20)}</h4>
+                      <h4
+                        className="curser_pointer"
+                        onClick={() => handleModalOpen(item)}
+                      >
+                        {" "}
+                        {truncateString(item.title, 20)}
+                      </h4>
                       <span>${item.price}</span>
                       <ul className="stars">
                         {[...Array(5)].map((_, i) => (
