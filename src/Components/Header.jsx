@@ -1,5 +1,5 @@
 // Import necessary modules
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import ShoppingCart from "../Comman/ShopingCart";
@@ -7,18 +7,18 @@ import { UserAuth } from "../context/UserContaxt";
 import SearchFeild from "../Components/SearchBar/SearchFeild";
 import { getAddToCart } from "../Request/Requiests";
 
-
 // Create Header component
 const Header = () => {
   const { userExist, handleLogOut } = UserAuth();
-  const [cartQuantity,setCartQuantity]=useState(0)
+  const [cartQuantity, setCartQuantity] = useState(0);
 
   const fetchData = async () => {
     try {
       const userid = localStorage.getItem("userId");
       const res = await getAddToCart(userid);
       if (res.length > 0) {
-        setCartQuantity(res.length);}
+        setCartQuantity(res.length);
+      }
       console.log(res);
     } catch (error) {
       console.log(error);
@@ -30,7 +30,7 @@ const Header = () => {
   }, []);
   return (
     <header className="header-area header-sticky">
-      <div className="container">
+      <div className="mx-5">
         <div className="row">
           <div className="col-12">
             <nav className="main-nav">
@@ -112,12 +112,20 @@ const Header = () => {
                     </ul>
                   )}
                 </li>
+                {userExist && (
+                  <li>
+                    <Link to="/Admin" className="scroll-to-section">
+                      Dashboard
+                    </Link>
+                  </li>
+                )}
 
                 {/* Shopping Cart */}
-                {userExist && 
-                <li>
-                  <ShoppingCart totalUniqueItems={cartQuantity}/>
-                </li>}
+                {userExist && (
+                  <li>
+                    <ShoppingCart totalUniqueItems={cartQuantity} />
+                  </li>
+                )}
               </ul>
 
               {/* Menu Trigger */}
