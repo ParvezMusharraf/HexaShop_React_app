@@ -114,9 +114,10 @@ const Header = () => {
                 </li>
 
                 {/* Shopping Cart */}
+                {userExist && 
                 <li>
                   <ShoppingCart totalUniqueItems={cartQuantity}/>
-                </li>
+                </li>}
               </ul>
 
               {/* Menu Trigger */}
