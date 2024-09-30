@@ -7,7 +7,7 @@ import { FaRegWindowClose } from "react-icons/fa";
 
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   // const [isOpen, setIsOpen] = useState(false); 
   const [showButton, setShowButton] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -44,7 +44,7 @@ const Sidebar = () => {
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <div className="sidebarContainer">
           <ul>
-            {/* <li><Link to="/admin/all-products">All Products</Link></li> */}
+            <li><Link to="/admin">Dashoard</Link></li>
             <li><Link to="/admin/manage-products">Manage Products</Link></li>
             <li><Link to="/admin/post-products">Post Products</Link></li>
           </ul>
