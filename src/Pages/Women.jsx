@@ -13,6 +13,8 @@ const Women = () => {
   const [open, setOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+    const [isMobile, setIsMobile] = useState(false);
+  
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -31,6 +33,16 @@ const Women = () => {
       }
     };
     fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768); // set breakpoint for mobile
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   const handleModalOpen = (product) => {
@@ -52,16 +64,16 @@ const Women = () => {
         <div
           className="row"
           style={{
-            marginTop: "10%",
+            marginTop: isMobile ? "20%" : "10%",
             flexDirection: "row",
             flexWrap: "wrap",
-            justifyContent: "space-between",
+            justifyContent: isMobile ? "center" : "space-between",
             alignItems: "center",
           }}
         >
           {isLoading ? (
             <div>Loading...</div>
-          ): productDetails.length === 0 ? (
+          ) : productDetails.length === 0 ? (
             <div>No products found.</div>
           ) : (
             productDetails.map((p) => (

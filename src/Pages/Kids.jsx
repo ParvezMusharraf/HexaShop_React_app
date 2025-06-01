@@ -14,6 +14,18 @@ const Kids = () => {
   const [selectedProduct, setSelectedProduct] = useState(null); // Renamed for clarity
   const [isLoading, setIsLoading] = useState(true); // Added loading state
   const [error, setError] = useState(null); // Added error state
+    const [isMobile, setIsMobile] = useState(false);
+
+
+   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768); // set breakpoint for mobile
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -56,10 +68,10 @@ const Kids = () => {
         <div
           className="row"
           style={{
-            marginTop: "10%",
+            marginTop: isMobile ? "20%" : "10%",
             flexDirection: "row",
             flexWrap: "wrap",
-            justifyContent: "space-between",
+            justifyContent: isMobile ? "center" :"space-between",
             alignItems: "center",
           }}
         >
