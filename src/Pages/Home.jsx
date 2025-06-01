@@ -8,6 +8,7 @@ import JewelerySection from "../Components/HomeJwelerySection/JewelerySection";
 import ElectronicSection from "../Components/HomeElectronicSection/ElectronicSection";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "../Components/Footer/Footer";
 
 const Home = () => {
   return (
@@ -20,6 +21,7 @@ const Home = () => {
       <KidsSection />
       <JewelerySection />
       <SubscribeSection />
+      <Footer/>
     </>
   );
 };

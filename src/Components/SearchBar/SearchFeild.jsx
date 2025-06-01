@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./search.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import MAIN_LocalURL from "../../Request/ApiConfig";
 
 const SearchField = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,7 +14,7 @@ const SearchField = () => {
     const fetchSuggestions = async () => {
       if (searchTerm.length > 2) {
         try {
-          const response = await axios.get("http://localhost:3000/suggestions", {
+          const response = await axios.get(`${MAIN_LocalURL}/suggestions`, {
             params: { term: searchTerm }
           });
           setSuggestions(response.data);

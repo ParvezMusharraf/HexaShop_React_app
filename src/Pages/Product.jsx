@@ -5,6 +5,7 @@ import { FaArrowAltCircleUp } from "react-icons/fa";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { Card } from "antd";
 import ProductDetailsModel from "../Comman/ProductDetailModel";
+import Footer from "../Components/Footer/Footer";
 
 const { Meta } = Card;
 
@@ -27,6 +28,7 @@ const Product = () => {
   };
 
   return (
+    <>
     <div
       style={{
         display: "flex",
@@ -95,6 +97,8 @@ const Product = () => {
       </div>
       {open && <ProductDetailsModel setOpen={setOpen} obj={callid} />}
     </div>
+    <Footer/>
+    </>
   );
 };
 
